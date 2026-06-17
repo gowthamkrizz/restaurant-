@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations – Stackly Restaurant</title>
+    <meta name="description" content="Book a table at Stackly Restaurant. Reserve your perfect dining experience today with instant confirmation.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">Stackly.</div>
+            <h2 class="loader-text primary-text">Preparing Your Table...</h2>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+             <a href="index.html" class="logo">
+    <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block;">
+</a>
+            <nav class="nav-links">
+                <a href="index.html"          class="nav-link">Home</a>
+                <a href="about.html"          class="nav-link">About</a>
+                <a href="menu.html"           class="nav-link">Menu</a>
+                <a href="gallery.html"        class="nav-link">Gallery</a>
+                <a href="reservations.html"   class="nav-link active">Reservations</a>
+                <a href="blog.html"           class="nav-link">Blog</a>
+                <a href="contact.html"        class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html"  class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <!-- HERO SECTION - Same as Home Page -->
+<div class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/22.webp');">
+    <div class="hero-content container">
+        <h1 class="hero-title" data-aos="fade-down" data-aos-duration="1000">Book a Table</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Reserve your perfect dining experience</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+            <a href="#" class="btn btn-primary btn-lg pulse-btn" onclick="redirectTo404(event)">Book a Table</a>
+            <a href="#" class="btn btn-outline btn-lg" style="border-color:white; color:white;" onclick="redirectTo404(event)">View Menu</a>
+        </div>
+    </div>
+</div>
+    <main>
+        <section class="py-5">
+            <div class="container grid-2 align-start gap-5">
+                <div data-aos="fade-right" data-aos-duration="900">
+                    <h2 class="section-title">Make a Reservation</h2>
+                    <p class="text-muted mt-2 mb-4">Fill in the details below and we'll confirm your booking instantly.</p>
+                    <form id="reservation-form" class="styled-form card p-4" onsubmit="handleReservationSubmit(event)">
+                        <div class="form-group"><label><i class="fas fa-user"></i> Full Name</label><input type="text" placeholder="Enter your name" class="form-control" required></div>
+                        <div class="form-group"><label><i class="fas fa-phone"></i> Phone Number</label><input type="tel" placeholder="Your contact number" class="form-control" required></div>
+                        <div class="form-group"><label><i class="fas fa-calendar-alt"></i> Date</label><input type="date" required class="form-control"></div>
+                        <div class="form-group"><label><i class="fas fa-clock"></i> Time</label><input type="time" required class="form-control"></div>
+                        <div class="form-group"><label><i class="fas fa-users"></i> Guest Count</label>
+                            <select required class="form-control">
+                                <option>1 Person</option><option>2 People</option><option>3 People</option><option>4 People</option><option>5+ People</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label><i class="fas fa-comment"></i> Special Requests</label><textarea placeholder="Any allergies, preferences..." rows="3" class="form-control"></textarea></div>
+                        <button type="submit" class="btn btn-primary w-100 mt-2"><i class="fas fa-check-circle"></i> Confirm Reservation</button>
+                    </form>
+                    <div id="reservation-msg" class="success-msg hidden mt-3 p-3 text-center">🎉 Reservation confirmed! We look forward to seeing you.</div>
+                </div>
+                <div data-aos="fade-left" data-aos-duration="900">
+    <h2 class="section-title">Location &amp; Hours</h2>
+    <div class="location-info mt-4">
+        <div class="location-detail" data-aos="fade-left" data-aos-delay="100">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+                <strong>Address</strong>
+                <p>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</p>
+            </div>
+        </div>
+        <div class="location-detail" data-aos="fade-left" data-aos-delay="200">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+                <strong>Phone</strong>
+                <p>+91 98765 43210</p>
+            </div>
+        </div>
+        <div class="location-detail" data-aos="fade-left" data-aos-delay="300">
+            <i class="fas fa-envelope"></i>
+            <div>
+                <strong>Email</strong>
+                <p>hello@stackly.com</p>
+            </div>
+        </div>
+        <div class="location-detail" data-aos="fade-left" data-aos-delay="400">
+            <i class="fas fa-clock"></i>
+            <div>
+                <strong>Opening Hours</strong>
+                <p>Mon–Fri: 9:00 AM – 10:00 PM</p>
+                <p>Sat: 10:00 AM – 11:00 PM</p>
+                <p>Sun: 10:00 AM – 9:00 PM</p>
+            </div>
+        </div>
+    </div>
+    <div class="map-container mt-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="map-mock">
+            <i class="fas fa-map-pin map-marker-pin"></i>
+            <h3>Stackly Restaurant Salem</h3>
+            <p class="text-muted">MMR Complex, Near Chinna Thirupathi, Salem 636008</p>
+            <span class="badge bg-success mt-2">Open Now</span>
+        </div>
+    </div>
+</div>
+            </div>
+        </section>
+    </main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container footer-grid">
+            <div class="footer-col">
+    <div class="footer-logo" style="cursor:pointer;" onclick="window.location.href='index.html'">
+        <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block; margin-bottom:1rem;">
+    </div>
+    <p class="footer-desc">Serving Fresh &amp; Delicious Food Every Day. From our kitchen to your table — crafted with love since 2010.</p>
+    <p class="footer-tagline"><i class="fas fa-star" style="color:var(--primary);"></i> Award-Winning Culinary Excellence</p>
+</div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <nav class="footer-links">
+                    <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+                    <a href="menu.html"><i class="fas fa-chevron-right"></i> Menu</a>
+                    <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+                    <a href="reservations.html"><i class="fas fa-chevron-right"></i> Reservations</a>
+                    <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+                </nav>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact Us</h4>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>hello@stackly.com</span></div>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Opening Hours</h4>
+                <div class="footer-hours">
+                    <div class="hours-row"><span>Mon &ndash; Fri</span><span>9:00 AM &ndash; 10:00 PM</span></div>
+                    <div class="hours-row"><span>Saturday</span><span>10:00 AM &ndash; 11:00 PM</span></div>
+                    <div class="hours-row"><span>Sunday</span><span>10:00 AM &ndash; 9:00 PM</span></div>
+                    <div class="hours-status open"><i class="fas fa-circle"></i> Open Now</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p>&copy; 2026 Stackly Restaurant. All Rights Reserved.</p>
+            <div class="footer-legal">
+                <a href="contact.html">Privacy Policy</a><span>|</span><a href="contact.html">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <button id="back-to-top" class="back-to-top" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="pages.js"></script>
+    <script>
+        const resForm = document.getElementById('reservation-form');
+        const resMsg = document.getElementById('reservation-msg');
+        
+        function handleReservationSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const inputs = form.querySelectorAll('input, select, textarea');
+            let allFilled = true;
+            inputs.forEach(input => {
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    allFilled = false;
+                }
+            });
+            if (allFilled) {
+                window.location.href = '404.html';
+            }
+        }
+        
+        function redirectTo404(e) {
+            e.preventDefault();
+            window.location.href = '404.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog – Stackly Restaurant</title>
+    <meta name="description" content="Read the latest news, chef tips, recipes, and events from Stackly Restaurant's kitchen blog.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">Stackly.</div>
+            <h2 class="loader-text primary-text">Loading Fresh Stories...</h2>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+    <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block;">
+</a>
+            <nav class="nav-links">
+                <a href="index.html"          class="nav-link">Home</a>
+                <a href="about.html"          class="nav-link">About</a>
+                <a href="menu.html"           class="nav-link">Menu</a>
+                <a href="gallery.html"        class="nav-link">Gallery</a>
+                <a href="reservations.html"   class="nav-link">Reservations</a>
+                <a href="blog.html"           class="nav-link active">Blog</a>
+                <a href="contact.html"        class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html"  class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <!-- HERO SECTION - Same as Home Page -->
+<div class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/21.webp');">
+    <div class="hero-content container">
+        <h1 class="hero-title" data-aos="fade-down" data-aos-duration="1000">Latest News &amp; Blog</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Stories, recipes &amp; events from our kitchen</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+            <a href="#" class="btn btn-primary btn-lg pulse-btn" onclick="redirectTo404(event)">Book a Table</a>
+            <a href="#" class="btn btn-outline btn-lg" style="border-color:white; color:white;" onclick="redirectTo404(event)">View Menu</a>
+        </div>
+    </div>
+</div>
+
+    <main>
+        <section class="news-section py-5">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">Latest Articles</h2>
+                <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Stay updated with our stories, recipes, and seasonal events.</p>
+                <div class="grid-3 mt-4">
+                    <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="blog-img"><img src="images/19.webp" alt="Blog 1"><span class="blog-date">June 15, 2026</span></div>
+                        <div class="blog-info"><span class="blog-tag">Chef's Tips</span><h3>Secrets of the Perfect Steak</h3><p>Discover our chef's top tips for dry-aging and seasoning the perfect ribeye steak.</p><a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a></div>
+                    </div>
+                    <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-img"><img src="images/18.webp" alt="Blog 2"><span class="blog-date">May 28, 2026</span></div>
+                        <div class="blog-info"><span class="blog-tag">New Arrivals</span><h3>Stackly's New Summer Cocktails</h3><p>Beat the heat with our upcoming list of organic botanical mocktails and craft cocktails.</p><a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a></div>
+                    </div>
+                    <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="blog-img"><img src="images/15.webp" alt="Blog 3"><span class="blog-date">May 10, 2026</span></div>
+                        <div class="blog-info"><span class="blog-tag">Milestone</span><h3>Celebrating 15 Years of Culinary Art</h3><p>Reflecting on our milestones, from a small family diner start to NYC's culinary icon.</p><a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a></div>
+                    </div>
+                    <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="blog-img"><img src="images/3.webp" alt="Blog 4"><span class="blog-date">Apr 20, 2026</span></div>
+                        <div class="blog-info"><span class="blog-tag">Recipes</span><h3>Our Classic Bruschetta Recipe</h3><p>Recreate our beloved starter at home with this simple step-by-step recipe guide.</p><a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a></div>
+                    </div>
+                    <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-img"><img src="images/5.webp" alt="Blog 5"><span class="blog-date">Apr 5, 2026</span></div>
+                        <div class="blog-info"><span class="blog-tag">Events</span><h3>Wine &amp; Dine Evening — Spring Edition</h3><p>Join us for an exclusive evening of fine wine pairings with our seasonal spring menu.</p><a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a></div>
+                    </div>
+                    <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="blog-img"><img src="images/2.webp" alt="Blog 6"><span class="blog-date">Mar 18, 2026</span></div>
+                        <div class="blog-info"><span class="blog-tag">Sustainability</span><h3>Farm to Table: Why We Go Local</h3><p>Learn about our partnerships with local organic farms and how it benefits every dish.</p><a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter CTA -->
+        <section class="cta-section">
+            <div class="container text-center">
+                <h2 data-aos="fade-down">Never Miss a Story</h2>
+                <p data-aos="fade-up" data-aos-delay="150">Subscribe to our newsletter and get the latest recipes and events delivered to your inbox.</p>
+                <form class="newsletter-inline" data-aos="zoom-in" data-aos-delay="300" onsubmit="handleNewsletterSubmit(event)">
+                    <input type="email" placeholder="Your email address" class="newsletter-inline-input" required>
+                    <button type="submit" class="btn btn-primary">Subscribe <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container footer-grid">
+            <div class="footer-col">
+    <div class="footer-logo" style="cursor:pointer;" onclick="window.location.href='index.html'">
+        <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block; margin-bottom:1rem;">
+    </div>
+    <p class="footer-desc">Serving Fresh &amp; Delicious Food Every Day. From our kitchen to your table — crafted with love since 2010.</p>
+    <p class="footer-tagline"><i class="fas fa-star" style="color:var(--primary);"></i> Award-Winning Culinary Excellence</p>
+</div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <nav class="footer-links">
+                    <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+                    <a href="menu.html"><i class="fas fa-chevron-right"></i> Menu</a>
+                    <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+                    <a href="reservations.html"><i class="fas fa-chevron-right"></i> Reservations</a>
+                    <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+                </nav>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact Us</h4>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>hello@stackly.com</span></div>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Opening Hours</h4>
+                <div class="footer-hours">
+                    <div class="hours-row"><span>Mon &ndash; Fri</span><span>9:00 AM &ndash; 10:00 PM</span></div>
+                    <div class="hours-row"><span>Saturday</span><span>10:00 AM &ndash; 11:00 PM</span></div>
+                    <div class="hours-row"><span>Sunday</span><span>10:00 AM &ndash; 9:00 PM</span></div>
+                    <div class="hours-status open"><i class="fas fa-circle"></i> Open Now</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p>&copy; 2026 Stackly Restaurant. All Rights Reserved.</p>
+            <div class="footer-legal">
+                <a href="contact.html">Privacy Policy</a><span>|</span><a href="contact.html">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <button id="back-to-top" class="back-to-top" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="pages.js"></script>
+    <script>
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const input = form.querySelector('input[type="email"]');
+            if (input && input.value.trim() !== '') {
+                window.location.href = '404.html';
+            }
+        }
+        
+        function redirectTo404(e) {
+            e.preventDefault();
+            window.location.href = '404.html';
+        }
+    </script>
+</body>
+</html>

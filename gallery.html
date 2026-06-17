@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery – Stackly Restaurant</title>
+    <meta name="description" content="Browse the Stackly Restaurant photo gallery — moments of culinary perfection captured in stunning imagery.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">Stackly.</div>
+            <h2 class="loader-text primary-text">Loading Gallery...</h2>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+    <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block;">
+</a>
+            <nav class="nav-links">
+                <a href="index.html"          class="nav-link">Home</a>
+                <a href="about.html"          class="nav-link">About</a>
+                <a href="menu.html"           class="nav-link">Menu</a>
+                <a href="gallery.html"        class="nav-link active">Gallery</a>
+                <a href="reservations.html"   class="nav-link">Reservations</a>
+                <a href="blog.html"           class="nav-link">Blog</a>
+                <a href="contact.html"        class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html"  class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION - Same as Home Page -->
+<div class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/20.webp');">
+    <div class="hero-content container">
+        <h1 class="hero-title" data-aos="fade-down" data-aos-duration="1000">Food Gallery</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Capturing moments of culinary perfection</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+            <a href="reservations.html" class="btn btn-primary btn-lg pulse-btn">Book a Table</a>
+            <a href="menu.html" class="btn btn-outline btn-lg" style="border-color:white; color:white;">View Menu</a>
+        </div>
+    </div>
+</div>
+
+    <main>
+        <section class="py-5" style="background-color:var(--bg-light);">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">Our Photo Gallery</h2>
+                <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Click any image to view full screen</p>
+                <div class="grid-3 gallery-grid mt-4">
+                    <img src="images/26.webp"  alt="Gallery 1"  class="gallery-img" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="images/27.webp"  alt="Gallery 2"  class="gallery-img" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="images/28.webp"  alt="Gallery 3"  class="gallery-img" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="images/29.webp"  alt="Gallery 4"  class="gallery-img" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="images/31.webp"  alt="Gallery 5"  class="gallery-img" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="images/32.webp"  alt="Gallery 6"  class="gallery-img" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="images/10.webp" alt="Gallery 7"  class="gallery-img" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="images/11.webp" alt="Gallery 8"  class="gallery-img" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="images/19.webp" alt="Gallery 9"  class="gallery-img" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="images/30.webp"  alt="Gallery 10" class="gallery-img" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="images/33.webp"  alt="Gallery 11" class="gallery-img" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="images/34.webp"  alt="Gallery 12" class="gallery-img" data-aos="zoom-in" data-aos-delay="200">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox hidden">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gallery Image">
+    </div>
+
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container footer-grid">
+           <div class="footer-col">
+    <div class="footer-logo" style="cursor:pointer;" onclick="window.location.href='index.html'">
+        <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block; margin-bottom:1rem;">
+    </div>
+    <p class="footer-desc">Serving Fresh &amp; Delicious Food Every Day. From our kitchen to your table — crafted with love since 2010.</p>
+    <p class="footer-tagline"><i class="fas fa-star" style="color:var(--primary);"></i> Award-Winning Culinary Excellence</p>
+</div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <nav class="footer-links">
+                    <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+                    <a href="menu.html"><i class="fas fa-chevron-right"></i> Menu</a>
+                    <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+                    <a href="reservations.html"><i class="fas fa-chevron-right"></i> Reservations</a>
+                    <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+                </nav>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact Us</h4>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>hello@stackly.com</span></div>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Opening Hours</h4>
+                <div class="footer-hours">
+                    <div class="hours-row"><span>Mon &ndash; Fri</span><span>9:00 AM &ndash; 10:00 PM</span></div>
+                    <div class="hours-row"><span>Saturday</span><span>10:00 AM &ndash; 11:00 PM</span></div>
+                    <div class="hours-row"><span>Sunday</span><span>10:00 AM &ndash; 9:00 PM</span></div>
+                    <div class="hours-status open"><i class="fas fa-circle"></i> Open Now</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p>&copy; 2026 Stackly Restaurant. All Rights Reserved.</p>
+            <div class="footer-legal">
+                <a href="contact.html">Privacy Policy</a><span>|</span><a href="contact.html">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <button id="back-to-top" class="back-to-top" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="pages.js"></script>
+    <script>
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        document.querySelectorAll('.gallery-img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.remove('hidden');
+            });
+        });
+        document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.add('hidden'));
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.add('hidden'); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Stackly Restaurant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-dark);
+            padding-top: 72px;
+        }
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--primary);
+            font-family: var(--font-heading);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 60px rgba(212,175,55,0.3);
+        }
+        .error-title {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .error-desc {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .error-actions .btn {
+            min-width: 160px;
+        }
+        .error-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+        @media (max-width: 600px) {
+            .error-code { font-size: 5rem; }
+            .error-title { font-size: 1.5rem; }
+            .error-actions .btn { min-width: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <!-- 404 CONTENT -->
+    <div class="error-page">
+        <div class="error-container" data-aos="fade-up" data-aos-duration="800">
+            <div class="error-icon"><i class="fas fa-utensils"></i></div>
+            <div class="error-code" data-aos="zoom-in" data-aos-delay="100">404</div>
+            <h1 class="error-title" data-aos="fade-up" data-aos-delay="200">Oops! Page Not Found</h1>
+            <p class="error-desc" data-aos="fade-up" data-aos-delay="300">
+                Looks like this dish isn't on our menu. The page you're looking for might have been moved, deleted, or never existed.
+            </p>
+            <div class="error-actions" data-aos="fade-up" data-aos-delay="400">
+                <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+                <a href="#" class="btn btn-outline" onclick="redirectTo404(event)"><i class="fas fa-utensils"></i> View Menu</a>
+                <a href="#" class="btn btn-outline" onclick="redirectTo404(event)"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="pages.js"></script>
+    <script>
+        function redirectTo404(e) {
+            e.preventDefault();
+            window.location.href = '404.html';
+        }
+    </script>
+</body>
+</html>

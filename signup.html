@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up – Stackly Restaurant</title>
+    <meta name="description" content="Join the Stackly dining community. Create an account to unlock exclusive deals, early event access, and loyalty rewards.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .auth-page-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-dark);
+            padding: 2rem;
+        }
+
+        .auth-page-container {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            min-height: 550px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            background: #fff;
+        }
+
+        .auth-page-container--reverse {
+            flex-direction: row-reverse;
+        }
+
+        .auth-card {
+            flex: 1;
+            background: #fff;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-card-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .auth-logo img {
+            max-height: 60px;
+            width: auto;
+        }
+
+        .auth-card-header h2 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .auth-card-header p {
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .auth-side-panel {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.85)), url('images/6.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-side-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, transparent 70%);
+        }
+
+        .auth-side-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            text-align: center;
+        }
+
+        .auth-side-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .auth-side-content p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .auth-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .auth-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+        }
+
+        .auth-feature i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background-color: #fff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .password-field {
+            position: relative;
+        }
+
+        .password-field .form-control {
+            padding-right: 46px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 14px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+
+        .auth-submit-btn {
+            padding: 0.85rem;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .auth-switch-link {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .auth-switch-link:hover {
+            text-decoration: underline;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .auth-page-container,
+            .auth-page-container--reverse {
+                flex-direction: column;
+                min-height: auto;
+                border-radius: 12px;
+            }
+            .auth-side-panel {
+                min-height: 200px;
+                order: -1;
+                padding: 1.5rem;
+            }
+            .auth-card {
+                padding: 2rem 1.5rem;
+            }
+            .auth-side-content h2 {
+                font-size: 1.5rem;
+            }
+            .auth-side-content p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            .auth-features {
+                gap: 0.6rem;
+            }
+            .auth-feature {
+                font-size: 0.85rem;
+            }
+            .auth-card-header h2 {
+                font-size: 1.5rem;
+            }
+            .auth-logo img {
+                max-height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-page-section {
+                padding: 1rem;
+            }
+            .auth-card {
+                padding: 1.5rem 1rem;
+            }
+            .auth-card-header h2 {
+                font-size: 1.3rem;
+            }
+            .form-control {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+            .auth-side-panel {
+                min-height: 150px;
+            }
+            .auth-logo img {
+                max-height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">Stackly.</div>
+            <h2 class="loader-text primary-text">Join the Stackly Family...</h2>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- AUTH PAGE - NO HEADER -->
+    <main class="auth-page-section">
+        <div class="auth-page-container auth-page-container--reverse" data-aos="fade-up" data-aos-duration="800">
+            <div class="auth-side-panel" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('images/24.webp');">
+                <div class="auth-side-content">
+                    <h2 data-aos="fade-down" data-aos-delay="300">Join Stackly Family</h2>
+                    <p data-aos="fade-up" data-aos-delay="400">Create an account and unlock an exclusive world of fine dining experiences.</p>
+                    <div class="auth-features">
+                        <div class="auth-feature" data-aos="fade-right" data-aos-delay="500"><i class="fas fa-check-circle"></i> Welcome 20% Discount</div>
+                        <div class="auth-feature" data-aos="fade-right" data-aos-delay="600"><i class="fas fa-check-circle"></i> Early Access to Events</div>
+                        <div class="auth-feature" data-aos="fade-right" data-aos-delay="700"><i class="fas fa-check-circle"></i> Loyalty Rewards Program</div>
+                        <div class="auth-feature" data-aos="fade-right" data-aos-delay="800"><i class="fas fa-check-circle"></i> Personal Chef Recommendations</div>
+                    </div>
+                </div>
+            </div>
+            <div class="auth-card">
+                <div class="auth-card-header">
+                    <div class="auth-logo">
+                        <img src="images/stackly-logo.webp" alt="Stackly Restaurant">
+                    </div>
+                    <h2>Create Account</h2>
+                    <p>Join our dining community today</p>
+                </div>
+                <form id="signup-form" class="styled-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Enter your full name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Mobile Number</label>
+                        <input type="tel" id="signup-phone" placeholder="Enter your phone number" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tag"></i> Register As</label>
+                        <select id="signup-role" class="form-control">
+                            <option value="user">&#x1F464; Customer</option>
+                            <option value="admin">&#x1F6E1; Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <div class="password-field">
+                            <input type="password" id="signup-password" placeholder="Create a password" class="form-control" required>
+                            <button type="button" class="password-toggle" id="signup-pass-toggle"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Confirm Password</label>
+                        <input type="password" id="signup-confirm" placeholder="Confirm your password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="remember-me">
+                            <input type="checkbox" required> I agree to <a href="#" class="auth-switch-link">Terms &amp; Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 auth-submit-btn"><i class="fas fa-user-plus"></i> Create Account</button>
+                    <p class="auth-switch">Already have an account? <a href="login.html" class="auth-switch-link">Login Here</a></p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="pages.js"></script>
+    <script>
+        // Password toggle
+        const toggle = document.getElementById('signup-pass-toggle');
+        const passInput = document.getElementById('signup-password');
+        if (toggle && passInput) {
+            toggle.addEventListener('click', () => {
+                const isPass = passInput.type === 'password';
+                passInput.type = isPass ? 'text' : 'password';
+                toggle.querySelector('i').className = isPass ? 'fas fa-eye-slash' : 'fas fa-eye';
+            });
+        }
+
+        // Signup form
+       
+    // ... existing code ...
+
+    // Signup form - FIXED: store email in localStorage
+    const signupForm = document.getElementById('signup-form');
+    if (signupForm) {
+        signupForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const pass = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+            if (pass !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const role = document.getElementById('signup-role').value;
+            
+            // Store email in localStorage
+            localStorage.setItem('stackly_email', email);
+            
+            localStorage.setItem('stackly_user', JSON.stringify({
+                name: name,
+                email: email,
+                role: role
+            }));
+            
+            window.location.href = 'login.html';
+        });
+    }
+
+
+        // AOS Init
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 60,
+                easing: 'ease-out-cubic',
+            });
+        }
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard – Stackly Restaurant</title>
+    <meta name="description" content="Manage your reservations, order history, and account settings.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-light);
+            overflow-x: hidden;
+        }
+        
+        .dash-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+        
+        .dash-sidebar {
+            width: 260px;
+            min-height: 100vh;
+            background: var(--secondary);
+            color: #fff;
+            padding: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(212,175,55,0.15);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        .dash-sidebar .sidebar-logo {
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .dash-sidebar .sidebar-logo img {
+            max-height: 45px;
+            width: auto;
+        }
+        .dash-sidebar .sidebar-brand {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .dash-sidebar .sidebar-brand h2 {
+            color: var(--primary);
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+        .dash-sidebar .sidebar-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .dash-sidebar h3 {
+            color: var(--primary);
+            padding: 0 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.7rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+        .dash-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            flex: 1;
+        }
+        .dash-menu-item {
+            padding: 0.9rem 1.5rem;
+            color: rgba(255,255,255,0.7);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            background: none;
+            border-right: none;
+            border-top: none;
+            border-bottom: none;
+            width: 100%;
+            text-align: left;
+        }
+        .dash-menu-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .dash-menu-item:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+        }
+        .dash-menu-item.active {
+            color: #fff;
+            background: rgba(212,175,55,0.12);
+            border-left-color: var(--primary);
+        }
+        .dash-menu-item.logout-item {
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.2rem;
+            color: rgba(255,100,100,0.7);
+        }
+        .dash-menu-item.logout-item:hover {
+            color: #ff6b6b;
+            background: rgba(255,0,0,0.05);
+        }
+        
+        .dash-content {
+            flex: 1;
+            padding: 2rem 2.5rem;
+            overflow-y: auto;
+            min-height: 100vh;
+            background: var(--bg-light);
+        }
+        .dash-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .dash-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .welcome-card {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1c1c1c 100%);
+            color: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(212,175,55,0.1);
+        }
+        .welcome-card h2 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.6rem;
+        }
+        .welcome-card p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .stat-box {
+            background: #fff;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-bottom: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+        .stat-box:hover {
+            transform: translateY(-3px);
+        }
+        .stat-info h3 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            line-height: 1.1;
+            margin-bottom: 0.2rem;
+            font-family: var(--font-body);
+        }
+        .stat-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+        .table-container {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-top: 1.5rem;
+            overflow-x: auto;
+        }
+        .table-container h3 {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 500px;
+        }
+        .styled-table thead tr {
+            background: var(--secondary);
+            color: #fff;
+        }
+        .styled-table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .styled-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+        .styled-table tbody tr:hover {
+            background: #f8f8f8;
+        }
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-warning { background: #fff3cd; color: #856404; }
+        .badge-danger { background: #f8d7da; color: #721c24; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        .text-muted { color: #999; }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .quick-action {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--text-dark);
+            border: 2px solid transparent;
+        }
+        .quick-action:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        .quick-action i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        .quick-action h4 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        .quick-action p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Sidebar Toggle */
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 200;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .sidebar-toggle:hover {
+            background: var(--primary-dark);
+        }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 98;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .dash-wrapper {
+                flex-direction: column;
+            }
+            .dash-sidebar {
+                width: 280px;
+                position: fixed;
+                top: 0;
+                left: -300px;
+                height: 100vh;
+                z-index: 99;
+                transition: left 0.3s ease;
+                box-shadow: 4px 0 30px rgba(0,0,0,0.3);
+            }
+            .dash-sidebar.open {
+                left: 0;
+            }
+            .sidebar-toggle {
+                display: block;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+            .dash-content {
+                padding: 1.5rem;
+                margin-top: 0;
+                width: 100%;
+            }
+            .stat-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            .stat-box {
+                padding: 1rem 1.2rem;
+            }
+            .stat-info h3 {
+                font-size: 1.6rem;
+            }
+            .welcome-card {
+                padding: 1.5rem;
+            }
+            .welcome-card h2 {
+                font-size: 1.3rem;
+            }
+            .quick-actions {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .dash-content {
+                padding: 1rem;
+            }
+            .stat-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .stat-box {
+                padding: 0.8rem 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            .stat-info h3 {
+                font-size: 1.4rem;
+            }
+            .stat-icon {
+                font-size: 1.5rem;
+                margin-top: 0.3rem;
+            }
+            .table-container {
+                padding: 1rem;
+            }
+            .styled-table {
+                font-size: 0.8rem;
+                min-width: 350px;
+            }
+            .styled-table th, .styled-table td {
+                padding: 8px 10px;
+            }
+            .dash-sidebar {
+                width: 260px;
+                left: -280px;
+            }
+            .quick-actions {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .quick-action {
+                padding: 1rem;
+            }
+            .quick-action i {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">Stackly.</div>
+            <h2 class="loader-text primary-text">Loading Customer Dashboard...</h2>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- Sidebar Toggle Button (Mobile) -->
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle Sidebar">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- DASHBOARD WRAPPER -->
+    <div class="dash-wrapper">
+        <!-- Sidebar -->
+        <aside class="dash-sidebar" id="dash-sidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-logo">
+                    <img src="images/stackly-logo.webp" alt="Stackly">
+                </div>
+                <p>My Account</p>
+            </div>
+            
+            <div class="dash-menu">
+                <button class="dash-menu-item active" data-target="overview">
+                    <i class="fas fa-chart-line"></i> Overview
+                </button>
+                <button class="dash-menu-item" data-target="orders">
+                    <i class="fas fa-shopping-bag"></i> My Orders
+                </button>
+                <button class="dash-menu-item" data-target="reservations">
+                    <i class="fas fa-calendar-alt"></i> My Reservations
+                </button>
+                <button class="dash-menu-item" data-target="profile">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+                <a href="menu.html" class="dash-menu-item">
+                    <i class="fas fa-utensils"></i> Order Food
+                </a>
+                <a href="index.html" class="dash-menu-item">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <button class="dash-menu-item logout-item" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dash-content">
+            <!-- OVERVIEW SECTION -->
+            <div id="overview" class="dash-section active">
+                <div class="welcome-card" data-aos="fade-down">
+                    <h2 id="welcome-name">👋 Welcome back, Foodie!</h2>
+                    <p>Enjoy exclusive member privileges, priority table reservations, and real-time order tracking.</p>
+                </div>
+
+                <div class="stat-grid" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-box">
+                        <div class="stat-info">
+                            <h3 id="total-orders">3</h3>
+                            <p>Total Orders</p>
+                        </div>
+                        <i class="fas fa-shopping-bag stat-icon"></i>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-info">
+                            <h3 id="upcoming-bookings">1</h3>
+                            <p>Upcoming Bookings</p>
+                        </div>
+                        <i class="fas fa-calendar-check stat-icon"></i>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-info">
+                            <h3 id="favorite-dishes">12</h3>
+                            <p>Favorite Dishes</p>
+                        </div>
+                        <i class="fas fa-heart stat-icon"></i>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-info">
+                            <h3 id="loyalty-points">450</h3>
+                            <p>Loyalty Points</p>
+                        </div>
+                        <i class="fas fa-star stat-icon"></i>
+                    </div>
+                </div>
+
+                <div class="quick-actions" data-aos="fade-up" data-aos-delay="150">
+                    <a href="menu.html" class="quick-action">
+                        <i class="fas fa-utensils"></i>
+                        <h4>Order Food</h4>
+                        <p>Browse our menu</p>
+                    </a>
+                    <a href="reservations.html" class="quick-action">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h4>Book a Table</h4>
+                        <p>Make a reservation</p>
+                    </a>
+                    <a href="#" class="quick-action" onclick="showSpecialOffer()">
+                        <i class="fas fa-gift"></i>
+                        <h4>Special Offers</h4>
+                        <p>View deals</p>
+                    </a>
+                    <a href="#" class="quick-action" onclick="viewProfile()">
+                        <i class="fas fa-user-edit"></i>
+                        <h4>Edit Profile</h4>
+                        <p>Update your info</p>
+                    </a>
+                </div>
+
+                <div class="table-container" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Recent Activity</h3>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Detail</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-activity-body">
+                            <tr>
+                                <td><i class="fas fa-calendar-alt" style="color:var(--primary); margin-right:8px;"></i> Table Booking</td>
+                                <td>Dine-in for 2 People</td>
+                                <td>Oct 15, 19:30</td>
+                                <td><span class="badge badge-success">Confirmed</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-shopping-bag" style="color:var(--primary); margin-right:8px;"></i> Food Order</td>
+                                <td>Signature Steak, Truffle Pasta</td>
+                                <td>Sep 28, 20:10</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-shopping-bag" style="color:var(--primary); margin-right:8px;"></i> Food Order</td>
+                                <td>Berry Pavlova, Bruschetta</td>
+                                <td>Sep 15, 18:45</td>
+                                <td><span class="badge badge-warning">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ORDERS SECTION -->
+            <div id="orders" class="dash-section">
+                <h2 style="margin-bottom:0.3rem;">My Orders</h2>
+                <p class="text-muted" style="margin-bottom:1.5rem;">View your complete order history.</p>
+                <div class="table-container">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                        <h3 style="margin:0;">Order History</h3>
+                        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                            <button class="btn btn-sm btn-primary" onclick="filterUserOrders('all')">All</button>
+                            <button class="btn btn-sm btn-outline" onclick="filterUserOrders('pending')">Pending</button>
+                            <button class="btn btn-sm btn-outline" onclick="filterUserOrders('completed')">Completed</button>
+                        </div>
+                    </div>
+                    <table class="styled-table" id="user-orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-order-body">
+                            <tr data-status="completed">
+                                <td>#1002</td>
+                                <td>Truffle Pasta (2), Chocolate Lava Cake (1)</td>
+                                <td>$60.97</td>
+                                <td>Sep 28, 20:10</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                            </tr>
+                            <tr data-status="pending">
+                                <td>#1005</td>
+                                <td>Berry Pavlova (1), Bruschetta (2)</td>
+                                <td>$32.97</td>
+                                <td>Sep 15, 18:45</td>
+                                <td><span class="badge badge-warning">Pending</span></td>
+                            </tr>
+                            <tr data-status="completed">
+                                <td>#1006</td>
+                                <td>Signature Steak (1), Caesar Salad (1)</td>
+                                <td>$46.98</td>
+                                <td>Sep 10, 19:30</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RESERVATIONS SECTION -->
+            <div id="reservations" class="dash-section">
+                <h2 style="margin-bottom:0.3rem;">My Reservations</h2>
+                <p class="text-muted" style="margin-bottom:1.5rem;">View and manage your table bookings.</p>
+                <div class="table-container">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                        <h3 style="margin:0;">All Bookings</h3>
+                        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                            <button class="btn btn-sm btn-primary" onclick="filterUserReservations('all')">All</button>
+                            <button class="btn btn-sm btn-outline" onclick="filterUserReservations('approved')">Approved</button>
+                            <button class="btn btn-sm btn-outline" onclick="filterUserReservations('pending')">Pending</button>
+                        </div>
+                    </div>
+                    <table class="styled-table" id="user-reservations-table">
+                        <thead>
+                            <tr>
+                                <th>Res ID</th>
+                                <th>Date & Time</th>
+                                <th>Guests</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-res-body">
+                            <tr data-status="approved">
+                                <td>#R202</td>
+                                <td>Oct 15, 19:30</td>
+                                <td>2 People</td>
+                                <td><span class="badge badge-success">Confirmed</span></td>
+                            </tr>
+                            <tr data-status="pending">
+                                <td>#R205</td>
+                                <td>Oct 20, 20:00</td>
+                                <td>4 People</td>
+                                <td><span class="badge badge-warning">Pending</span></td>
+                            </tr>
+                            <tr data-status="approved">
+                                <td>#R206</td>
+                                <td>Oct 5, 18:00</td>
+                                <td>3 People</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:center; margin-top:1.5rem;">
+                    <a href="reservations.html" class="btn btn-primary"><i class="fas fa-plus"></i> Make New Reservation</a>
+                </div>
+            </div>
+
+            <!-- PROFILE SECTION -->
+            <div id="profile" class="dash-section">
+                <h2 style="margin-bottom:0.3rem;">My Profile</h2>
+                <p class="text-muted" style="margin-bottom:1.5rem;">Update your personal information and preferences.</p>
+                <div class="table-container" style="max-width:600px; margin:0 auto;">
+                    <form id="profile-form" class="styled-form" style="padding:0.5rem;">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Full Name</label>
+                            <input type="text" id="profile-name" class="form-control" value="Foodie User" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email Address</label>
+                            <input type="email" id="profile-email" class="form-control" value="foodie@stackly.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Phone Number</label>
+                            <input type="tel" id="profile-phone" class="form-control" value="+1 (234) 567-8900">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Address</label>
+                            <input type="text" id="profile-address" class="form-control" value="123 Stackly Ave, NY 10001">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-utensils"></i> Dietary Preferences</label>
+                            <select id="profile-diet" class="form-control">
+                                <option>None</option>
+                                <option>Vegetarian</option>
+                                <option>Vegan</option>
+                                <option>Gluten-Free</option>
+                                <option>Keto</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100"><i class="fas fa-save"></i> Save Changes</button>
+                    </form>
+                    <div id="profile-msg" class="success-msg hidden mt-3 p-3 text-center">✅ Profile updated successfully!</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="pages.js"></script>
+    <script>
+        // Check Auth
+        const storedUser = localStorage.getItem('stackly_user');
+        const user = storedUser ? JSON.parse(storedUser) : null;
+        
+        if (!user || user.role !== 'user') {
+            window.location.href = 'login.html';
+        } else {
+            const welcomeName = document.getElementById('welcome-name');
+            if (welcomeName && user.name) {
+                welcomeName.textContent = `👋 Welcome back, ${user.name}!`;
+            }
+            const profileName = document.getElementById('profile-name');
+            if (profileName && user.name) {
+                profileName.value = user.name;
+            }
+            const profileEmail = document.getElementById('profile-email');
+            if (profileEmail && user.email) {
+                profileEmail.value = user.email;
+            }
+        }
+
+        // Sidebar toggle for mobile
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('dash-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+            const icon = sidebarToggle.querySelector('i');
+            icon.className = sidebar.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+        }
+
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', toggleSidebar);
+        }
+        if (overlay) {
+            overlay.addEventListener('click', toggleSidebar);
+        }
+
+        // Close sidebar on menu item click (mobile)
+        document.querySelectorAll('.dash-menu-item').forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('active');
+                    const icon = sidebarToggle.querySelector('i');
+                    if (icon) icon.className = 'fas fa-bars';
+                }
+            });
+        });
+
+        // Tab switching
+        const menuItems = document.querySelectorAll('.dash-menu-item[data-target]');
+        const sections = document.querySelectorAll('.dash-section');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                
+                menuItems.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+
+                sections.forEach(s => {
+                    s.classList.remove('active');
+                    if (s.id === target) {
+                        s.classList.add('active');
+                    }
+                });
+
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            });
+        });
+
+        // Filter functions
+        function filterUserOrders(filter) {
+            const rows = document.querySelectorAll('#user-order-body tr');
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status');
+                if (filter === 'all' || status === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterUserReservations(filter) {
+            const rows = document.querySelectorAll('#user-res-body tr');
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status');
+                if (filter === 'all' || status === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Quick Actions
+        function showSpecialOffer() {
+            alert('🎉 Special Offer: Get 20% off on all main courses this weekend! Use code: STACKLY20');
+        }
+
+        function viewProfile() {
+            document.querySelector('.dash-menu-item[data-target="profile"]').click();
+        }
+
+        // Profile Form
+        const profileForm = document.getElementById('profile-form');
+        const profileMsg = document.getElementById('profile-msg');
+        if (profileForm) {
+            profileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('profile-name').value;
+                const email = document.getElementById('profile-email').value;
+                
+                const userData = JSON.parse(localStorage.getItem('stackly_user'));
+                userData.name = name;
+                userData.email = email;
+                localStorage.setItem('stackly_user', JSON.stringify(userData));
+                
+                const welcomeName = document.getElementById('welcome-name');
+                if (welcomeName) {
+                    welcomeName.textContent = `👋 Welcome back, ${name}!`;
+                }
+                
+                profileMsg.classList.remove('hidden');
+                setTimeout(() => profileMsg.classList.add('hidden'), 4000);
+            });
+        }
+
+        // Logout
+        function handleLogout() {
+            localStorage.removeItem('stackly_user');
+            window.location.href = 'login.html';
+        }
+
+        // Initialize AOS
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 60,
+                easing: 'ease-out-cubic',
+            });
+        }
+    </script>
+</body>
+</html>

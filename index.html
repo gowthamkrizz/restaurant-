@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Premium Modern Restaurant</title>
+    <meta name="description" content="Experience culinary excellence at Stackly Restaurant. Explore our menu, meet our master chefs, book a table, and enjoy premium dining.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS - Animate On Scroll Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===================== PRELOADER ===================== -->
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <h2 class="loader-text primary-text">Preparing Your Dining Experience...</h2>
+            <h3 class="loader-text secondary-text">Fresh Flavors Loading...</h3>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+           <a href="index.html" class="logo">
+    <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block;">
+</a>
+            <nav class="nav-links">
+                <a href="index.html"        class="nav-link active">Home</a>
+                 <a href="about.html"        class="nav-link">About</a>
+                <a href="menu.html"         class="nav-link">Menu</a>
+                <a href="gallery.html"      class="nav-link">Gallery</a>
+                <a href="reservations.html" class="nav-link">Reservations</a>
+                <a href="blog.html"         class="nav-link">Blog</a>
+                <a href="contact.html"      class="nav-link">Contact</a>
+                
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html"      class="btn btn-outline" id="nav-login-btn">Login</a>
+                <a href="signup.html"     class="btn btn-primary" id="nav-signup-btn">Sign Up</a>
+                <a href="#"       class="btn btn-primary" id="nav-order-btn" onclick="redirectTo404(event)"><i class="fas fa-shopping-bag"></i> Order Now</a>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== APP ROOT ===================== -->
+    <main id="app-root">
+
+        <!-- ================================================
+             HOME PAGE
+        ================================================ -->
+        <section id="home" class="page-section active-section">
+
+            <!-- 1. Hero Section -->
+            <div class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/25.webp');">
+                <div class="hero-content container">
+                    <h1 class="hero-title" data-aos="fade-down" data-aos-duration="1000">Experience Culinary Excellence at Stackly</h1>
+                    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Where passion meets flavor in every bite.</p>
+                    <div class="hero-btns" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                        <a href="#" class="btn btn-primary btn-lg pulse-btn" onclick="redirectTo404(event)">Book a Table</a>
+                        <a href="#" class="btn btn-outline btn-lg" style="border-color:white; color:white;" onclick="redirectTo404(event)">View Menu</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Why Choose Us -->
+            <section class="why-choose-us-section py-5">
+                <div class="container">
+                    <h2 class="section-title text-center" data-aos="fade-up">Why Choose Us</h2>
+                    <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">What makes our dining experience unique and unforgettable.</p>
+                    <div class="grid-4 mt-4">
+                        <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                            <i class="fas fa-leaf feature-icon"></i>
+                            <h3>Fresh Ingredients</h3>
+                            <p>We source local, organic, and seasonal produce for the freshest dishes.</p>
+                        </div>
+                        <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                            <i class="fas fa-user-tie feature-icon"></i>
+                            <h3>Expert Chefs</h3>
+                            <p>Handcrafted recipes from world-renowned chefs using exclusive ingredients.</p>
+                        </div>
+                        <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                            <i class="fas fa-bolt feature-icon"></i>
+                            <h3>Fast Service</h3>
+                            <p>Dedicated staff providing seamless, quick, and hospitable dining support.</p>
+                        </div>
+                        <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
+                            <i class="fas fa-award feature-icon"></i>
+                            <h3>Quality Food</h3>
+                            <p>Ensuring the highest standards of culinary quality in every single bite.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Featured Dishes -->
+            <section class="featured-dishes container py-5">
+                <h2 class="section-title text-center" data-aos="fade-up">Featured Dishes</h2>
+                <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Taste our chef's highly recommended creations.</p>
+                <div class="grid-3 mt-4">
+                    <div class="food-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="food-img"><img src="images/26.webp" alt="Signature Steak"></div>
+                        <div class="food-info">
+                            <h3>Signature Steak</h3>
+                            <p>Perfectly grilled ribeye with our secret spice blend and truffle butter glaze.</p>
+                            <div class="flex-between mt-3" style="display:flex; justify-content:space-between; align-items:center;">
+                                <span class="price" style="margin-top:0;">$34.99</span>
+                                <span class="stars" style="color:var(--primary); font-weight:600;"><i class="fas fa-star"></i> 5.0</span>
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm w-100 mt-3" onclick="redirectTo404(event)"><i class="fas fa-shopping-bag"></i> Order Now</a>
+                        </div>
+                    </div>
+                    <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="food-img"><img src="images/27.webp" alt="Truffle Pasta"></div>
+                        <div class="food-info">
+                            <h3>Truffle Pasta</h3>
+                            <p>Handmade pasta tossed in a rich, buttery truffle cream sauce and parmesan.</p>
+                            <div class="flex-between mt-3" style="display:flex; justify-content:space-between; align-items:center;">
+                                <span class="price" style="margin-top:0;">$24.99</span>
+                                <span class="stars" style="color:var(--primary); font-weight:600;"><i class="fas fa-star"></i> 4.9</span>
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm w-100 mt-3" onclick="redirectTo404(event)"><i class="fas fa-shopping-bag"></i> Order Now</a>
+                        </div>
+                    </div>
+                    <div class="food-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="food-img"><img src="images/28.webp" alt="Berry Pavlova"></div>
+                        <div class="food-info">
+                            <h3>Berry Pavlova</h3>
+                            <p>Light and crispy meringue topped with fresh seasonal berries and whipped cream.</p>
+                            <div class="flex-between mt-3" style="display:flex; justify-content:space-between; align-items:center;">
+                                <span class="price" style="margin-top:0;">$12.99</span>
+                                <span class="stars" style="color:var(--primary); font-weight:600;"><i class="fas fa-star"></i> 4.8</span>
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm w-100 mt-3" onclick="redirectTo404(event)"><i class="fas fa-shopping-bag"></i> Order Now</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Menu Categories -->
+            <section class="categories-section py-5" style="background:#fff;">
+                <div class="container">
+                    <h2 class="section-title text-center" data-aos="fade-up">Our Menu Categories</h2>
+                    <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Explore our structured menus by courses.</p>
+                    <div class="grid-4 mt-4">
+                        <a href="#" class="category-card" data-aos="flip-left" data-aos-delay="100" onclick="redirectTo404(event)">
+                            <img src="images/12.webp" alt="Starters">
+                            <div class="category-overlay">
+                                <h3>Starters</h3>
+                                <p>Light bites to start your journey</p>
+                            </div>
+                        </a>
+                        <a href="#" class="category-card" data-aos="flip-left" data-aos-delay="200" onclick="redirectTo404(event)">
+                            <img src="images/13.webp" alt="Main Course">
+                            <div class="category-overlay">
+                                <h3>Main Course</h3>
+                                <p>Exquisite and hearty dishes</p>
+                            </div>
+                        </a>
+                        <a href="#" class="category-card" data-aos="flip-left" data-aos-delay="300" onclick="redirectTo404(event)">
+                            <img src="images/14.webp" alt="Desserts">
+                            <div class="category-overlay">
+                                <h3>Desserts</h3>
+                                <p>Decadent sweet endings</p>
+                            </div>
+                        </a>
+                        <a href="#" class="category-card" data-aos="flip-left" data-aos-delay="400" onclick="redirectTo404(event)">
+                            <img src="images/15.webp" alt="Beverages">
+                            <div class="category-overlay">
+                                <h3>Beverages</h3>
+                                <p>Fresh mocktails & wines</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. About Us Summary -->
+            <section class="py-5">
+                <div class="container grid-2 align-center gap-5">
+                    <div data-aos="fade-right">
+                        <h2 class="section-title">About Us</h2>
+                        <h3 class="mt-2 text-muted" style="font-family:var(--font-body); font-weight:500; font-size:1.2rem;">Crafting culinary stories since 2010</h3>
+                        <p class="mt-3">Founded in 2010, Stackly began with a simple idea: to serve incredible food in a welcoming space. What started as a small family diner has grown into one of New York City's most celebrated culinary destinations.</p>
+                        <p class="mt-3"><strong>Our Mission & Values:</strong> We are guided by passion, driven by purpose, committed to sourcing local sustainable ingredients, and dedicated to delivering heartfelt hospitality.</p>
+                        <a href="#" class="btn btn-primary mt-4" onclick="redirectTo404(event)">Read Our Full Story</a>
+                    </div>
+                    <div data-aos="fade-left">
+                        <img src="images/7.webp" alt="Our Story" class="rounded-img">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Special Offers -->
+            <section class="py-5" style="background:var(--bg-light);">
+                <div class="container">
+                    <h2 class="section-title text-center" data-aos="fade-up">Special Offers</h2>
+                    <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Don't miss our exclusive dining deals and promotions.</p>
+                    <div class="grid-3 mt-4">
+                        <div class="food-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="food-img" style="height:200px;"><img src="images/15.webp" alt="Happy Hours"></div>
+                            <div class="food-info">
+                                <h3>Weekend Specials</h3>
+                                <p>Buy one get one free on all botanical mocktails and craft sodas every Saturday and Sunday.</p>
+                                <span class="price" style="color:var(--primary); font-size:1rem; margin-top:10px;">Available Sat & Sun</span>
+                            </div>
+                        </div>
+                        <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="food-img" style="height:200px;"><img src="images/1.webp" alt="Anniversary Steak"></div>
+                            <div class="food-info">
+                                <h3>50% Off Signature Steak</h3>
+                                <p>Celebrate our anniversary week with half price on our award-winning steak. Dine-in only.</p>
+                                <span class="price" style="color:var(--primary); font-size:1rem; margin-top:10px;">Use Code: STEAK50</span>
+                            </div>
+                        </div>
+                        <div class="food-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="food-img" style="height:200px;"><img src="images/6.webp" alt="Combo Meals"></div>
+                            <div class="food-info">
+                                <h3>Gourmet Combo Meals</h3>
+                                <p>Includes 2 Starters, 3 Main Courses, and 2 Desserts of your choice at a highly discounted price.</p>
+                                <span class="price" style="color:var(--primary); font-size:1rem; margin-top:10px;">Only $89.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Chef Section -->
+            <section class="py-5" style="background:#fff;">
+                <div class="container">
+                    <h2 class="section-title text-center" data-aos="fade-up">Meet Our Master Chefs</h2>
+                    <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">The creative minds behind our delicious flavors.</p>
+                    <div class="grid-3 mt-4">
+                        <div class="chef-card" data-aos="zoom-in" data-aos-delay="100">
+                            <img src="images/8.webp" alt="Gordon Ramsay">
+                            <h3 class="mt-3">Gordon Ramsay</h3>
+                            <p class="text-muted">Head Chef - 15 yrs Experience</p>
+                            <span class="badge bg-success" style="background:rgba(212,175,55,0.15); color:var(--primary); margin-top:8px; display:inline-block; padding:4px 10px; border-radius:20px; font-weight:600; font-size:0.8rem;">Specialty: Grilled Ribeye</span>
+                        </div>
+                        <div class="chef-card" data-aos="zoom-in" data-aos-delay="200">
+                            <img src="images/9.webp" alt="Alice Waters">
+                            <h3 class="mt-3">Alice Waters</h3>
+                            <p class="text-muted">Sous Chef - 10 yrs Experience</p>
+                            <span class="badge bg-success" style="background:rgba(212,175,55,0.15); color:var(--primary); margin-top:8px; display:inline-block; padding:4px 10px; border-radius:20px; font-weight:600; font-size:0.8rem;">Specialty: Seafood & Salads</span>
+                        </div>
+                        <div class="chef-card" data-aos="zoom-in" data-aos-delay="300">
+                            <img src="images/10.webp" alt="Massimo Bottura">
+                            <h3 class="mt-3">Massimo Bottura</h3>
+                            <p class="text-muted">Pastry Chef - 12 yrs Experience</p>
+                            <span class="badge bg-success" style="background:rgba(212,175,55,0.15); color:var(--primary); margin-top:8px; display:inline-block; padding:4px 10px; border-radius:20px; font-weight:600; font-size:0.8rem;">Specialty: Fine Desserts</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Food Gallery -->
+            <section class="py-5" style="background:var(--bg-light);">
+                <div class="container">
+                    <h2 class="section-title text-center" data-aos="fade-up">Food Gallery</h2>
+                    <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Capturing signature dishes, restaurant interiors, and events.</p>
+                    <div class="grid-3 gallery-grid mt-4">
+                        <img src="images/29.webp" alt="Signature Steak" class="gallery-img" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="images/2.webp" alt="Restaurant Interior" class="gallery-img" data-aos="zoom-in" data-aos-delay="150">
+                        <img src="images/31.webp" alt="Fresh Salads" class="gallery-img" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="images/32.webp" alt="Gourmet Pasta" class="gallery-img" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="images/10.webp" alt="Exquisite Desserts" class="gallery-img" data-aos="zoom-in" data-aos-delay="150">
+                        <img src="images/37.webp" alt="Exclusive Dining Event" class="gallery-img" data-aos="zoom-in" data-aos-delay="200">
+                    </div>
+                    <div class="text-center mt-4" data-aos="fade-up">
+                        <a href="#" class="btn btn-primary" onclick="redirectTo404(event)">View Full Gallery</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Customer Testimonials -->
+            <section class="testimonials-section py-5" style="background:#fff;">
+                <div class="container">
+                    <h2 class="section-title text-center" data-aos="fade-up">Customer Testimonials</h2>
+                    <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Honest reviews and ratings from our beloved food enthusiasts.</p>
+                    <div class="grid-3 mt-4">
+                        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="testimonial-quote">"The Truffle Pasta here is out of this world! The ambience was cozy and the hospitality was truly 5-star."</p>
+                            <div class="testimonial-author">
+                                <img src="images/8.webp" alt="Sarah Jenkins" class="testimonial-avatar">
+                                <div class="testimonial-meta">
+                                    <h4>Sarah Jenkins</h4>
+                                    <span class="text-muted" style="font-size:0.8rem;">Food Critic</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="testimonial-quote">"Signature Steak was perfectly grilled just as I requested. Excellent wine pairings. Will definitely return!"</p>
+                            <div class="testimonial-author">
+                                <img src="images/9.webp" alt="David Carter" class="testimonial-avatar">
+                                <div class="testimonial-meta">
+                                    <h4>David Carter</h4>
+                                    <span class="text-muted" style="font-size:0.8rem;">Regular Guest</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                            <p class="testimonial-quote">"Stackly offers a unique experience. The Berry Pavlova is light, fresh and the plating was incredibly gorgeous!"</p>
+                            <div class="testimonial-author">
+                                <img src="images/10.webp" alt="Elena Rostova" class="testimonial-avatar">
+                                <div class="testimonial-meta">
+                                    <h4>Elena Rostova</h4>
+                                    <span class="text-muted" style="font-size:0.8rem;">Influencer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. Statistics Counter -->
+            <div id="stats-section" class="stats-section py-5" style="background:var(--bg-dark);">
+                <div class="container grid-4 text-center">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="100"><h3 class="counter" data-target="15000">0</h3><p>Happy Customers</p></div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200"><h3 class="counter" data-target="24500">0</h3><p>Dishes Served</p></div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300"><h3 class="counter" data-target="15">0</h3><p>Years of Experience</p></div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400"><h3 class="counter" data-target="12">0</h3><p>Awards Won</p></div>
+                </div>
+            </div>
+
+            <!-- 11. Reservation Section -->
+            <section class="py-5" style="background:#fff;">
+                <div class="container max-w-md text-center">
+                    <h2 class="section-title text-center" data-aos="fade-up">Book a Table</h2>
+                    <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Fill in details to secure your dining table instantly.</p>
+                    <form id="reservation-form" class="styled-form card p-4" data-aos="fade-up" data-aos-delay="200" onsubmit="handleReservationSubmit(event)">
+                        <div class="form-group"><label><i class="fas fa-user"></i> Full Name</label><input type="text" placeholder="Enter your name" class="form-control" required></div>
+                        <div class="form-group"><label><i class="fas fa-phone"></i> Phone Number</label><input type="tel" placeholder="Your contact number" class="form-control" required></div>
+                        <div class="grid-2 gap-3" style="grid-template-columns: 1fr 1fr; margin-bottom: 0;">
+                            <div class="form-group"><label><i class="fas fa-calendar-alt"></i> Date</label><input type="date" required class="form-control"></div>
+                            <div class="form-group"><label><i class="fas fa-clock"></i> Time</label><input type="time" required class="form-control"></div>
+                        </div>
+                        <div class="form-group"><label><i class="fas fa-users"></i> Guests</label>
+                            <select required class="form-control">
+                                <option>1 Person</option><option>2 People</option><option>3 People</option><option>4 People</option><option>5+ People</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-2"><i class="fas fa-check-circle"></i> Book Table</button>
+                    </form>
+                    <div id="reservation-msg" class="success-msg hidden mt-3 p-3 text-center">🎉 Table reserved successfully! We look forward to hosting you.</div>
+                </div>
+            </section>
+
+            <!-- 12. Location & Map -->
+<!-- 12. Location & Map -->
+<section class="py-5" style="background:var(--bg-light);">
+    <div class="container grid-2 align-start gap-5">
+        <div data-aos="fade-right">
+            <h2 class="section-title">Location &amp; Map</h2>
+            <p class="text-muted mb-4">Visit us for a memorable dining experience in the heart of Salem.</p>
+            <div class="location-info">
+                <div class="footer-contact-item" style="color:var(--text-dark); margin-bottom:1.5rem;">
+                    <i class="fas fa-map-marker-alt" style="font-size:1.2rem;"></i>
+                    <div>
+                        <strong>Address</strong>
+                        <p>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</p>
+                    </div>
+                </div>
+                <div class="footer-contact-item" style="color:var(--text-dark); margin-bottom:1.5rem;">
+                    <i class="fas fa-phone-alt" style="font-size:1.2rem;"></i>
+                    <div>
+                        <strong>Phone</strong>
+                        <p>+91 98765 43210</p>
+                    </div>
+                </div>
+                <div class="footer-contact-item" style="color:var(--text-dark); margin-bottom:1.5rem;">
+                    <i class="fas fa-envelope" style="font-size:1.2rem;"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <p>hello@stackly.com</p>
+                    </div>
+                </div>
+                <div class="footer-contact-item" style="color:var(--text-dark); margin-bottom:1.5rem;">
+                    <i class="fas fa-clock" style="font-size:1.2rem;"></i>
+                    <div>
+                        <strong>Working Hours</strong>
+                        <p>Mon–Fri: 9:00 AM – 10:00 PM</p>
+                        <p>Sat: 10:00 AM – 11:00 PM</p>
+                        <p>Sun: 10:00 AM – 9:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map-container" data-aos="fade-left" style="height:350px; border-radius:8px; overflow:hidden; box-shadow:var(--shadow);">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.838545049019!2d78.1592487!3d11.6642365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf1e5c5c5c5c5%3A0x5c5c5c5c5c5c5c5c!2sChinna%20Thirupathi%2C%20Salem%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
+            <!-- 13. Latest News / Blog -->
+            <section class="py-5" style="background:#fff;">
+                <div class="container">
+                    <h2 class="section-title text-center" data-aos="fade-up">Latest News / Blog</h2>
+                    <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Check out our new dishes, events, and seasonal promotions.</p>
+                    <div class="grid-3 mt-4">
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="blog-img"><img src="images/19.webp" alt="Perfect Steak"><span class="blog-date">June 15, 2026</span></div>
+                            <div class="blog-info">
+                                <span class="blog-tag" style="color:var(--primary); font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:5px;">Recipes</span>
+                                <h3>Secrets of the Perfect Steak</h3>
+                                <p>Discover our chef's top tips for dry-aging and seasoning the perfect ribeye steak.</p>
+                                <a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="blog-img"><img src="images/18.webp" alt="Summer Drinks"><span class="blog-date">May 28, 2026</span></div>
+                            <div class="blog-info">
+                                <span class="blog-tag" style="color:var(--primary); font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:5px;">Promotions</span>
+                                <h3>Stackly's New Summer Cocktails</h3>
+                                <p>Beat the heat with our upcoming list of organic botanical mocktails and craft cocktails.</p>
+                                <a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="blog-img"><img src="images/15.webp" alt="Anniversary Celebration"><span class="blog-date">May 10, 2026</span></div>
+                            <div class="blog-info">
+                                <span class="blog-tag" style="color:var(--primary); font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:5px;">Events</span>
+                                <h3>Celebrating 15 Years of Culinary Art</h3>
+                                <p>Reflecting on our milestones, from a small family diner start to NYC's culinary icon.</p>
+                                <a href="#" class="blog-link" onclick="redirectTo404(event)">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 14. Call to Action -->
+            <section class="cta-section">
+                <div class="container text-center">
+                    <h2 data-aos="fade-down">Reserve Your Table Today</h2>
+                    <p data-aos="fade-up" data-aos-delay="150">Spaces fill up fast, especially on weekends. Book a table or order online now.</p>
+                    <div class="hero-btns mt-4" data-aos="fade-up" data-aos-delay="300" style="justify-content:center; display:flex; gap:1.5rem;">
+                        <a href="#" class="btn btn-light btn-lg pulse-btn" onclick="redirectTo404(event)">Book Table Now</a>
+                        <a href="#" class="btn btn-outline btn-lg" style="border-color:white; color:white;" onclick="redirectTo404(event)">Order Online</a>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+        <!-- END HOME -->
+
+        <!-- 404 Page -->
+        <section id="404" class="page-section">
+            <div class="page-404-wrapper">
+                <h1 data-aos="zoom-in" class="error-code">404</h1>
+                <h2 data-aos="fade-up" data-aos-delay="100">Table Not Found</h2>
+                <p data-aos="fade-up" data-aos-delay="200">Looks like this table is reserved elsewhere. Let's guide you back to our restaurant.</p>
+                <div class="flex-center gap-3 mt-4" data-aos="fade-up" data-aos-delay="300">
+                    <a href="index.html" class="btn btn-primary">Back to Home</a>
+                    <a href="#" class="btn btn-outline" onclick="redirectTo404(event)">View Menu</a>
+                    <a href="#" class="btn btn-outline" onclick="redirectTo404(event)">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- END APP ROOT -->
+
+    <!-- ===================== FOOTER ===================== -->
+    <!-- FOOTER -->
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container footer-grid">
+            <div class="footer-col">
+    <div class="footer-logo" style="cursor:pointer;" onclick="window.location.href='index.html'">
+        <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block; margin-bottom:1rem;">
+    </div>
+    <p class="footer-desc">Serving Fresh &amp; Delicious Food Every Day. From our kitchen to your table — crafted with love since 2010.</p>
+    <p class="footer-tagline"><i class="fas fa-star" style="color:var(--primary);"></i> Award-Winning Culinary Excellence</p>
+</div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <nav class="footer-links">
+                    <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+                    <a href="menu.html"><i class="fas fa-chevron-right"></i> Menu</a>
+                    <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+                    <a href="reservations.html"><i class="fas fa-chevron-right"></i> Reservations</a>
+                    <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+                </nav>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact Us</h4>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>hello@stackly.com</span></div>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Opening Hours</h4>
+                <div class="footer-hours">
+                    <div class="hours-row"><span>Mon &ndash; Fri</span><span>9:00 AM &ndash; 10:00 PM</span></div>
+                    <div class="hours-row"><span>Saturday</span><span>10:00 AM &ndash; 11:00 PM</span></div>
+                    <div class="hours-row"><span>Sunday</span><span>10:00 AM &ndash; 9:00 PM</span></div>
+                    <div class="hours-status open"><i class="fas fa-circle"></i> Open Now</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p>&copy; 2026 Stackly Restaurant. All Rights Reserved.</p>
+            <div class="footer-legal">
+                <a href="contact.html">Privacy Policy</a><span>|</span><a href="contact.html">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" class="back-to-top" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox hidden">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gallery Image">
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- App JS -->
+    <script src="app.js"></script>
+    <script>
+        function redirectTo404(e) {
+            e.preventDefault();
+            window.location.href = '404.html';
+        }
+        
+        function handleReservationSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const inputs = form.querySelectorAll('input, select, textarea');
+            let allFilled = true;
+            inputs.forEach(input => {
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    allFilled = false;
+                }
+            });
+            if (allFilled) {
+                window.location.href = '404.html';
+            }
+        }
+    </script>
+</body>
+</html>

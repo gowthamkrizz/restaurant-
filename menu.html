@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu – Stackly Restaurant</title>
+    <meta name="description" content="Explore Stackly's full menu — starters, main courses, desserts, and beverages. Fresh, handcrafted dishes made with love.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">Stackly.</div>
+            <h2 class="loader-text primary-text">Loading Our Menu...</h2>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+    <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block;">
+</a>
+            <nav class="nav-links">
+                <a href="index.html"          class="nav-link">Home</a>
+                <a href="about.html"          class="nav-link">About</a>
+                <a href="menu.html"           class="nav-link active">Menu</a>
+                <a href="gallery.html"        class="nav-link">Gallery</a>
+                <a href="reservations.html"   class="nav-link">Reservations</a>
+                <a href="blog.html"           class="nav-link">Blog</a>
+                <a href="contact.html"        class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html"  class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION - Same as Home Page -->
+<div class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/23.webp');">
+    <div class="hero-content container">
+        <h1 class="hero-title" data-aos="fade-down" data-aos-duration="1000">Our Menu</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Fresh, handcrafted dishes made with love</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+            <a href="#" class="btn btn-primary btn-lg pulse-btn" onclick="redirectTo404(event)">Book a Table</a>
+            <a href="#" class="btn btn-outline btn-lg" style="border-color:white; color:white;" onclick="redirectTo404(event)">View Menu</a>
+        </div>
+    </div>
+</div>
+
+    <main>
+        <!-- Category Cards -->
+        <section class="categories-section py-5">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">Browse by Category</h2>
+                <div class="grid-4 mt-4">
+                    <div class="category-card filter-category" data-category="starters" data-aos="flip-left" data-aos-delay="100"><img src="images/28.webp" alt="Starters"><div class="category-overlay"><h3>Starters</h3><p>Light bites to start</p></div></div>
+                    <div class="category-card filter-category" data-category="main"     data-aos="flip-left" data-aos-delay="200"><img src="images/29.webp" alt="Main Course"><div class="category-overlay"><h3>Main Course</h3><p>Hearty exquisite dishes</p></div></div>
+                    <div class="category-card filter-category" data-category="desserts" data-aos="flip-left" data-aos-delay="300"><img src="images/31.webp" alt="Desserts"><div class="category-overlay"><h3>Desserts</h3><p>Decadent sweet endings</p></div></div>
+                    <div class="category-card filter-category" data-category="all"      data-aos="flip-left" data-aos-delay="400"><img src="images/32.webp" alt="Full Menu"><div class="category-overlay"><h3>Full Menu</h3><p>Complete selection</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter + Menu Grid -->
+        <section id="menu-section" class="py-5" style="background:#fff;">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">Explore Our Menu</h2>
+                <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Search or filter through our freshly prepared dishes.</p>
+                <div class="menu-search text-center mb-4" data-aos="fade-up" data-aos-delay="150">
+                    <input type="text" id="menu-search-input" placeholder="Search for dishes..." class="form-control" style="max-width:420px;display:inline-block;">
+                </div>
+                <div class="menu-filters text-center mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="starters">Starters</button>
+                    <button class="filter-btn" data-filter="main">Main Course</button>
+                    <button class="filter-btn" data-filter="desserts">Desserts</button>
+                </div>
+                <div class="grid-3 menu-grid" id="menu-container">
+                    <div class="food-card menu-item" data-category="starters" data-aos="fade-up" data-aos-delay="100"><div class="food-img"><img src="images/2.webp" alt="Bruschetta"></div><div class="food-info"><h3>Bruschetta</h3><p>Toasted Italian bread rubbed with garlic and topped with fresh tomatoes.</p><span class="price">$9.99</span></div></div>
+                    <div class="food-card menu-item" data-category="main"     data-aos="fade-up" data-aos-delay="150"><div class="food-img"><img src="images/8.webp" alt="Grilled Salmon"></div><div class="food-info"><h3>Grilled Salmon</h3><p>Fresh Atlantic salmon with asparagus and lemon butter sauce.</p><span class="price">$28.99</span></div></div>
+                    <div class="food-card menu-item" data-category="desserts" data-aos="fade-up" data-aos-delay="200"><div class="food-img"><img src="images/9.webp" alt="Chocolate Lava Cake"></div><div class="food-info"><h3>Chocolate Lava Cake</h3><p>Warm chocolate cake with molten center, served with vanilla ice cream.</p><span class="price">$10.99</span></div></div>
+                    <div class="food-card menu-item" data-category="starters" data-aos="fade-up" data-aos-delay="100"><div class="food-img"><img src="images/10.webp" alt="Caesar Salad"></div><div class="food-info"><h3>Caesar Salad</h3><p>Crisp romaine, croutons, shaved parmesan and classic Caesar dressing.</p><span class="price">$11.99</span></div></div>
+                    <div class="food-card menu-item" data-category="main"     data-aos="fade-up" data-aos-delay="150"><div class="food-img"><img src="images/11.webp" alt="Signature Steak"></div><div class="food-info"><h3>Signature Steak</h3><p>Perfectly grilled ribeye with our secret spice blend and truffle butter glaze.</p><span class="price">$34.99</span></div></div>
+                    <div class="food-card menu-item" data-category="desserts" data-aos="fade-up" data-aos-delay="200"><div class="food-img"><img src="images/26.webp" alt="Berry Pavlova"></div><div class="food-info"><h3>Berry Pavlova</h3><p>Light crispy meringue topped with fresh seasonal berries and cream.</p><span class="price">$12.99</span></div></div>
+                    <div class="food-card menu-item" data-category="main"     data-aos="fade-up" data-aos-delay="100"><div class="food-img"><img src="images/27.webp" alt="Truffle Pasta"></div><div class="food-info"><h3>Truffle Pasta</h3><p>Handmade pasta tossed in a rich, buttery truffle cream sauce.</p><span class="price">$24.99</span></div></div>
+                    <div class="food-card menu-item" data-category="starters" data-aos="fade-up" data-aos-delay="150"><div class="food-img"><img src="images/28.webp" alt="Soup du Jour"></div><div class="food-info"><h3>Soup du Jour</h3><p>Chef's daily selection of freshly crafted seasonal soup, served with artisan bread.</p><span class="price">$8.99</span></div></div>
+                    <div class="food-card menu-item" data-category="desserts" data-aos="fade-up" data-aos-delay="200"><div class="food-img"><img src="images/29.webp" alt="Tiramisu"></div><div class="food-info"><h3>Tiramisu</h3><p>Classic Italian dessert with espresso-soaked ladyfingers and mascarpone cream.</p><span class="price">$9.99</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="container text-center">
+                <h2 data-aos="fade-down">Hungry? Reserve Your Table Now!</h2>
+                <p data-aos="fade-up" data-aos-delay="150">Experience these dishes in our restaurant — book your table today.</p>
+                <a href="#" class="btn btn-light btn-lg pulse-btn" data-aos="zoom-in" data-aos-delay="300" onclick="redirectTo404(event)">Book a Table</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+   <!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container footer-grid">
+            <div class="footer-col">
+    <div class="footer-logo" style="cursor:pointer;" onclick="window.location.href='index.html'">
+        <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block; margin-bottom:1rem;">
+    </div>
+    <p class="footer-desc">Serving Fresh &amp; Delicious Food Every Day. From our kitchen to your table — crafted with love since 2010.</p>
+    <p class="footer-tagline"><i class="fas fa-star" style="color:var(--primary);"></i> Award-Winning Culinary Excellence</p>
+</div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <nav class="footer-links">
+                    <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+                    <a href="menu.html"><i class="fas fa-chevron-right"></i> Menu</a>
+                    <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+                    <a href="reservations.html"><i class="fas fa-chevron-right"></i> Reservations</a>
+                    <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+                </nav>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact Us</h4>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>hello@stackly.com</span></div>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Opening Hours</h4>
+                <div class="footer-hours">
+                    <div class="hours-row"><span>Mon &ndash; Fri</span><span>9:00 AM &ndash; 10:00 PM</span></div>
+                    <div class="hours-row"><span>Saturday</span><span>10:00 AM &ndash; 11:00 PM</span></div>
+                    <div class="hours-row"><span>Sunday</span><span>10:00 AM &ndash; 9:00 PM</span></div>
+                    <div class="hours-status open"><i class="fas fa-circle"></i> Open Now</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p>&copy; 2026 Stackly Restaurant. All Rights Reserved.</p>
+            <div class="footer-legal">
+                <a href="contact.html">Privacy Policy</a><span>|</span><a href="contact.html">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <button id="back-to-top" class="back-to-top" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="pages.js"></script>
+    <script>
+        // Menu filter logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+        const searchInput = document.getElementById('menu-search-input');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterMenuItems(btn.getAttribute('data-filter'), searchInput ? searchInput.value.toLowerCase() : '');
+            });
+        });
+        if (searchInput) {
+            searchInput.addEventListener('input', e => {
+                const activeBtn = document.querySelector('.filter-btn.active');
+                filterMenuItems(activeBtn ? activeBtn.getAttribute('data-filter') : 'all', e.target.value.toLowerCase());
+            });
+        }
+        function filterMenuItems(category, term) {
+            menuItems.forEach(item => {
+                const matchCat = category === 'all' || item.getAttribute('data-category') === category;
+                const matchSearch = item.querySelector('h3').innerText.toLowerCase().includes(term);
+                item.style.display = (matchCat && matchSearch) ? 'block' : 'none';
+            });
+        }
+        // Category card click
+        document.querySelectorAll('.filter-category').forEach(card => {
+            card.addEventListener('click', () => {
+                const cat = card.getAttribute('data-category');
+                const btn = document.querySelector(`.filter-btn[data-filter="${cat}"]`);
+                if (btn) btn.click();
+                document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        function redirectTo404(e) {
+            e.preventDefault();
+            window.location.href = '404.html';
+        }
+    </script>
+</body>
+</html>
