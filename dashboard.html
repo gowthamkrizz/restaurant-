@@ -69,6 +69,52 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
+        
+        /* User Profile in Sidebar */
+        .sidebar-user-profile {
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .sidebar-user-profile .profile-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .sidebar-user-profile .profile-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .sidebar-user-profile .profile-info .user-name {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .sidebar-user-profile .profile-info .user-email {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
         .dash-sidebar h3 {
             color: var(--primary);
             padding: 0 1.5rem;
@@ -166,6 +212,11 @@
         .welcome-card p {
             color: #ccc;
             font-size: 0.95rem;
+        }
+        .welcome-card .welcome-email {
+            color: var(--primary);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
         }
         .stat-grid {
             display: grid;
@@ -372,6 +423,14 @@
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
                 gap: 1rem;
             }
+            .sidebar-user-profile {
+                padding: 0.8rem 1rem;
+            }
+            .sidebar-user-profile .profile-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
         }
         @media (max-width: 576px) {
             .dash-content {
@@ -417,6 +476,12 @@
             .quick-action i {
                 font-size: 1.5rem;
             }
+            .sidebar-user-profile .profile-info .user-name {
+                font-size: 0.8rem;
+            }
+            .sidebar-user-profile .profile-info .user-email {
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
@@ -446,6 +511,17 @@
                     <img src="images/stackly-logo.webp" alt="Stackly">
                 </div>
                 <p>My Account</p>
+            </div>
+            
+            <!-- User Profile in Sidebar -->
+            <div class="sidebar-user-profile" id="sidebar-user-profile">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <p class="user-name" id="sidebar-user-name">Foodie</p>
+                    <p class="user-email" id="sidebar-user-email">foodie@stackly.com</p>
+                </div>
             </div>
             
             <div class="dash-menu">
@@ -480,6 +556,7 @@
                 <div class="welcome-card" data-aos="fade-down">
                     <h2 id="welcome-name">👋 Welcome back, Foodie!</h2>
                     <p>Enjoy exclusive member privileges, priority table reservations, and real-time order tracking.</p>
+                    <p class="welcome-email" id="welcome-email-display"><i class="fas fa-envelope"></i> Logged in as: foodie@stackly.com</p>
                 </div>
 
                 <div class="stat-grid" data-aos="fade-up" data-aos-delay="100">
@@ -678,11 +755,11 @@
                     <form id="profile-form" class="styled-form" style="padding:0.5rem;">
                         <div class="form-group">
                             <label><i class="fas fa-user"></i> Full Name</label>
-                            <input type="text" id="profile-name" class="form-control" value="Foodie User" required>
+                            <input type="text" id="profile-name" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label><i class="fas fa-envelope"></i> Email Address</label>
-                            <input type="email" id="profile-email" class="form-control" value="foodie@stackly.com" required>
+                            <input type="email" id="profile-email" class="form-control" required readonly style="background:#f5f5f5; cursor:not-allowed;">
                         </div>
                         <div class="form-group">
                             <label><i class="fas fa-phone"></i> Phone Number</label>
@@ -720,17 +797,38 @@
         if (!user || user.role !== 'user') {
             window.location.href = 'login.html';
         } else {
+            // Update welcome name
             const welcomeName = document.getElementById('welcome-name');
             if (welcomeName && user.name) {
                 welcomeName.textContent = `👋 Welcome back, ${user.name}!`;
             }
+            
+            // Update profile name
             const profileName = document.getElementById('profile-name');
             if (profileName && user.name) {
                 profileName.value = user.name;
             }
+            
+            // Update profile email
             const profileEmail = document.getElementById('profile-email');
             if (profileEmail && user.email) {
                 profileEmail.value = user.email;
+            }
+            
+            // Update sidebar user info
+            const sidebarUserName = document.getElementById('sidebar-user-name');
+            if (sidebarUserName && user.name) {
+                sidebarUserName.textContent = user.name;
+            }
+            const sidebarUserEmail = document.getElementById('sidebar-user-email');
+            if (sidebarUserEmail && user.email) {
+                sidebarUserEmail.textContent = user.email;
+            }
+            
+            // Update welcome email display
+            const welcomeEmailDisplay = document.getElementById('welcome-email-display');
+            if (welcomeEmailDisplay && user.email) {
+                welcomeEmailDisplay.innerHTML = `<i class="fas fa-envelope"></i> Logged in as: ${user.email}`;
             }
         }
 
@@ -840,6 +938,12 @@
                 const welcomeName = document.getElementById('welcome-name');
                 if (welcomeName) {
                     welcomeName.textContent = `👋 Welcome back, ${name}!`;
+                }
+                
+                // Update sidebar
+                const sidebarUserName = document.getElementById('sidebar-user-name');
+                if (sidebarUserName) {
+                    sidebarUserName.textContent = name;
                 }
                 
                 profileMsg.classList.remove('hidden');

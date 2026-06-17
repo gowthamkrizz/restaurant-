@@ -72,6 +72,52 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
+        
+        /* User Profile in Sidebar */
+        .sidebar-user-profile {
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .sidebar-user-profile .profile-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .sidebar-user-profile .profile-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .sidebar-user-profile .profile-info .user-name {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .sidebar-user-profile .profile-info .user-email {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
         .dash-sidebar h3 {
             color: var(--primary);
             padding: 0 1.5rem;
@@ -170,6 +216,11 @@
         .welcome-card p {
             color: #ccc;
             font-size: 0.95rem;
+        }
+        .welcome-card .welcome-email {
+            color: var(--primary);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
         }
         .stat-grid {
             display: grid;
@@ -356,6 +407,14 @@
             .welcome-card h2 {
                 font-size: 1.3rem;
             }
+            .sidebar-user-profile {
+                padding: 0.8rem 1rem;
+            }
+            .sidebar-user-profile .profile-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
         }
         @media (max-width: 576px) {
             .dash-content {
@@ -391,6 +450,12 @@
                 width: 260px;
                 left: -280px;
             }
+            .sidebar-user-profile .profile-info .user-name {
+                font-size: 0.8rem;
+            }
+            .sidebar-user-profile .profile-info .user-email {
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
@@ -422,6 +487,17 @@
                 <p>Admin Panel</p>
             </div>
             
+            <!-- User Profile in Sidebar -->
+            <div class="sidebar-user-profile" id="sidebar-user-profile">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="profile-info">
+                    <p class="user-name" id="sidebar-admin-name">Admin</p>
+                    <p class="user-email" id="sidebar-admin-email">admin@stackly.com</p>
+                </div>
+            </div>
+            
             <div class="dash-menu">
                 <button class="dash-menu-item active" data-target="overview">
                     <i class="fas fa-chart-line"></i> Overview
@@ -449,8 +525,11 @@
             <!-- OVERVIEW SECTION -->
             <div id="overview" class="dash-section active">
                 <div class="welcome-card" data-aos="fade-down">
-                    <h2>👋 Welcome back, Admin!</h2>
+                    <h2 id="welcome-name">👋 Welcome back, Admin!</h2>
                     <p>Manage all customer orders, accept table bookings, and monitor restaurant performance statistics.</p>
+                    <p class="welcome-email" id="admin-email-display">
+                        <i class="fas fa-envelope"></i> Logged in as: admin@stackly.com
+                    </p>
                 </div>
 
                 <div class="stat-grid" data-aos="fade-up" data-aos-delay="100">
@@ -723,6 +802,28 @@
         
         if (!user || user.role !== 'admin') {
             window.location.href = 'login.html';
+        } else {
+            // Display admin email in welcome card
+            const adminEmailDisplay = document.getElementById('admin-email-display');
+            if (adminEmailDisplay && user.email) {
+                adminEmailDisplay.innerHTML = `<i class="fas fa-envelope"></i> Logged in as: ${user.email}`;
+            }
+            
+            // Display admin name in welcome card
+            const welcomeName = document.getElementById('welcome-name');
+            if (welcomeName && user.name) {
+                welcomeName.textContent = `👋 Welcome back, ${user.name}!`;
+            }
+            
+            // Update sidebar user info
+            const sidebarAdminName = document.getElementById('sidebar-admin-name');
+            if (sidebarAdminName && user.name) {
+                sidebarAdminName.textContent = user.name;
+            }
+            const sidebarAdminEmail = document.getElementById('sidebar-admin-email');
+            if (sidebarAdminEmail && user.email) {
+                sidebarAdminEmail.textContent = user.email;
+            }
         }
 
         // Sidebar toggle for mobile

@@ -245,23 +245,10 @@ if (mobileMenuToggle && navLinksContainer) {
     }
 
     // =============================================
-    // 6. RESERVATION FORM
+    // 6. RESERVATION FORM - REMOVED conflicting handler
     // =============================================
-    const resForm = document.getElementById('reservation-form');
-    const resMsg = document.getElementById('reservation-msg');
-    
-    if (resForm) {
-        resForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            resForm.reset();
-            resMsg.classList.remove('hidden');
-            resMsg.style.display = 'block';
-            setTimeout(() => { 
-                resMsg.classList.add('hidden'); 
-                resMsg.style.display = 'none';
-            }, 5000);
-        });
-    }
+    // The reservation form on the home page now uses handleHomeReservationSubmit in the inline script
+    // This prevents conflicts with the app.js handler
 
     // =============================================
     // 7. LIGHTBOX FOR GALLERY PREVIEW

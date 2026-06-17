@@ -51,6 +51,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
         }
 
         .auth-card-header {
@@ -79,6 +80,32 @@
             color: var(--text-muted);
             margin-top: 0.3rem;
             font-size: 0.95rem;
+        }
+
+        /* Back to Home Button */
+        .back-home-btn {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: #f5f5f5;
+        }
+        .back-home-btn:hover {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(-3px);
+        }
+        .back-home-btn i {
+            font-size: 0.9rem;
         }
 
         .auth-side-panel {
@@ -316,6 +343,12 @@
             .auth-logo img {
                 max-height: 50px;
             }
+            .back-home-btn {
+                top: 1rem;
+                left: 1rem;
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -342,6 +375,15 @@
             .auth-logo img {
                 max-height: 45px;
             }
+            .back-home-btn {
+                top: 0.8rem;
+                left: 0.8rem;
+                font-size: 0.7rem;
+                padding: 3px 8px;
+            }
+            .back-home-btn span {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -360,6 +402,12 @@
     <main class="auth-page-section">
         <div class="auth-page-container" data-aos="fade-up" data-aos-duration="800">
             <div class="auth-card">
+                <!-- Back to Home Button -->
+                <a href="index.html" class="back-home-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Home</span>
+                </a>
+                
                 <div class="auth-card-header">
                     <div class="auth-logo">
                         <img src="images/stackly-logo.webp" alt="Stackly Restaurant">
@@ -423,31 +471,27 @@
             });
         }
 
-       
-    // ... existing code ...
-
-    // Login form - FIXED: store email in localStorage
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', e => {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const role = document.getElementById('login-role').value;
-            
-            // Store email in localStorage
-            localStorage.setItem('stackly_email', email);
-            
-            const userData = { 
-                name: role === 'admin' ? 'Admin' : 'Foodie', 
-                email: email,
-                role 
-            };
-            localStorage.setItem('stackly_user', JSON.stringify(userData));
-            
-            window.location.href = role === 'admin' ? 'admin.html' : 'dashboard.html';
-        });
-    }
-
+        // Login form - FIXED: store email in localStorage
+        const loginForm = document.getElementById('login-form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', e => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const role = document.getElementById('login-role').value;
+                
+                // Store email in localStorage
+                localStorage.setItem('stackly_email', email);
+                
+                const userData = { 
+                    name: role === 'admin' ? 'Admin' : 'Foodie', 
+                    email: email,
+                    role 
+                };
+                localStorage.setItem('stackly_user', JSON.stringify(userData));
+                
+                window.location.href = role === 'admin' ? 'admin.html' : 'dashboard.html';
+            });
+        }
 
         // AOS Init
         if (typeof AOS !== 'undefined') {

@@ -59,43 +59,80 @@
 
     <main>
         <!-- Our Story -->
-        <section class="py-5">
-            <div class="container grid-2 align-center gap-5">
-                <div data-aos="fade-right" data-aos-duration="900">
-                    <h2 class="section-title">Our Story</h2>
-                    <p class="mt-3">Founded in 2010, Stackly began with a simple idea: to serve incredible food in a welcoming space. What started as a small family diner has grown into one of New York City's most celebrated culinary destinations.</p>
-                    <p class="mt-3">Our founders believed great food could bring people together — that philosophy is woven into everything we do, from the recipes we craft to the way we train every member of our staff.</p>
-                    <div class="about-highlights mt-4">
-                        <div class="about-highlight" data-aos="fade-right" data-aos-delay="100"><i class="fas fa-award"></i><span>15+ Culinary Awards</span></div>
-                        <div class="about-highlight" data-aos="fade-right" data-aos-delay="200"><i class="fas fa-users"></i><span>50+ Expert Staff</span></div>
-                        <div class="about-highlight" data-aos="fade-right" data-aos-delay="300"><i class="fas fa-globe"></i><span>Globally Sourced Ingredients</span></div>
-                    </div>
-                </div>
-                <div data-aos="fade-left" data-aos-duration="900">
-                    <img src="images/7.webp" alt="Our Story" class="rounded-img">
+        <!-- 5. About Us Summary - Image covering area -->
+<section class="py-5" style="background:#fff;">
+    <div class="container grid-2 align-center gap-5">
+        <div data-aos="fade-right" style="width:100%;">
+            <div style="position:relative; width:100%; border-radius:12px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+                <img src="images/7.webp" alt="Our Story" style="width:100%; height:450px; object-fit:cover; display:block; transition:transform 0.5s ease;">
+                <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, rgba(0,0,0,0.7)); padding:2rem; color:#fff;">
+                    <span style="font-size:0.8rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--primary);">Our Legacy</span>
+                    <h3 style="color:#fff; margin:0; font-size:1.3rem;">Crafting culinary stories since 2010</h3>
                 </div>
             </div>
-        </section>
+        </div>
+        <div data-aos="fade-left">
+            <span style="display:inline-block; background:rgba(212,175,55,0.12); color:var(--primary); padding:4px 16px; border-radius:20px; font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.5rem;">About Stackly</span>
+            <h2 class="section-title" style="font-size:2.8rem;">Our Story</h2>
+            <p class="mt-3" style="font-size:1.05rem; line-height:1.9; color:#555;">Founded in 2010, Stackly began with a simple idea: to serve incredible food in a welcoming space. What started as a small family diner has grown into one of New York City's most celebrated culinary destinations.</p>
+            <p class="mt-3" style="font-size:1.05rem; line-height:1.9; color:#555;">Our founders believed great food could bring people together — that philosophy is woven into everything we do, from the recipes we craft to the way we train every member of our staff.</p>
+            <div class="about-highlights mt-4" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; background:#f8f8f8; border-radius:8px; border-left:3px solid var(--primary);">
+                    <i class="fas fa-award" style="color:var(--primary); font-size:1.2rem;"></i>
+                    <span style="font-weight:600;">15+ Culinary Awards</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; background:#f8f8f8; border-radius:8px; border-left:3px solid var(--primary);">
+                    <i class="fas fa-users" style="color:var(--primary); font-size:1.2rem;"></i>
+                    <span style="font-weight:600;">50+ Expert Staff</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; background:#f8f8f8; border-radius:8px; border-left:3px solid var(--primary);">
+                    <i class="fas fa-globe" style="color:var(--primary); font-size:1.2rem;"></i>
+                    <span style="font-weight:600;">Globally Sourced Ingredients</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; background:#f8f8f8; border-radius:8px; border-left:3px solid var(--primary);">
+                    <i class="fas fa-heart" style="color:var(--primary); font-size:1.2rem;"></i>
+                    <span style="font-weight:600;">100% Customer Satisfaction</span>
+                </div>
+            </div>
+            <a href="404.html" class="btn btn-primary mt-4"><i class="fas fa-arrow-right"></i> Read Our Full Story</a>
+        </div>
+    </div>
+</section>
 
-        <!-- Mission & Vision -->
-        <section class="py-5" style="background-color:var(--bg-light);">
-            <div class="container">
-                <h2 class="section-title text-center" data-aos="fade-up">Mission &amp; Vision</h2>
-                <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Guided by purpose, driven by passion.</p>
-                <div class="grid-2 mt-4">
-                    <div class="mission-card" data-aos="fade-right" data-aos-delay="100">
-                        <div class="mission-icon"><i class="fas fa-bullseye"></i></div>
-                        <h3>Our Mission</h3>
-                        <p>To deliver an unforgettable dining experience through culinary innovation, exceptional ingredients, and heartfelt service that makes every visit feel like a celebration.</p>
-                    </div>
-                    <div class="mission-card" data-aos="fade-left" data-aos-delay="100">
-                        <div class="mission-icon"><i class="fas fa-eye"></i></div>
-                        <h3>Our Vision</h3>
-                        <p>To be the most beloved restaurant brand — where every guest feels like family and every meal is a masterpiece crafted with love and purpose.</p>
-                    </div>
+        <!-- 6. Mission & Vision - Added styles -->
+<section class="py-5" style="background:var(--bg-light);">
+    <div class="container">
+        <span style="display:block; text-align:center; color:var(--primary); font-weight:600; text-transform:uppercase; letter-spacing:2px; font-size:0.8rem; margin-bottom:0.5rem;">Our Guiding Principles</span>
+        <h2 class="section-title text-center" data-aos="fade-up">Mission &amp; Vision</h2>
+        <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">Guided by purpose, driven by passion.</p>
+        <div class="grid-2 mt-4">
+            <div class="mission-card" data-aos="fade-right" data-aos-delay="100" style="background:#fff; padding:2.5rem; border-radius:12px; box-shadow:var(--shadow); border-top:4px solid var(--primary); transition:transform 0.3s ease;">
+                <div class="mission-icon" style="display:inline-block; background:rgba(212,175,55,0.12); padding:1rem; border-radius:50%; margin-bottom:1.5rem;">
+                    <i class="fas fa-bullseye" style="color:var(--primary); font-size:2rem;"></i>
+                </div>
+                <h3 style="font-size:1.5rem; margin-bottom:0.8rem;">Our Mission</h3>
+                <p style="color:#555; line-height:1.8; font-size:1.05rem;">To deliver an unforgettable dining experience through culinary innovation, exceptional ingredients, and heartfelt service that makes every visit feel like a celebration.</p>
+                <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+                    <span style="background:var(--primary); color:#fff; padding:2px 12px; border-radius:20px; font-size:0.7rem; font-weight:600;">Excellence</span>
+                    <span style="background:var(--primary); color:#fff; padding:2px 12px; border-radius:20px; font-size:0.7rem; font-weight:600;">Innovation</span>
+                    <span style="background:var(--primary); color:#fff; padding:2px 12px; border-radius:20px; font-size:0.7rem; font-weight:600;">Hospitality</span>
                 </div>
             </div>
-        </section>
+            <div class="mission-card" data-aos="fade-left" data-aos-delay="100" style="background:#fff; padding:2.5rem; border-radius:12px; box-shadow:var(--shadow); border-top:4px solid var(--primary); transition:transform 0.3s ease;">
+                <div class="mission-icon" style="display:inline-block; background:rgba(212,175,55,0.12); padding:1rem; border-radius:50%; margin-bottom:1.5rem;">
+                    <i class="fas fa-eye" style="color:var(--primary); font-size:2rem;"></i>
+                </div>
+                <h3 style="font-size:1.5rem; margin-bottom:0.8rem;">Our Vision</h3>
+                <p style="color:#555; line-height:1.8; font-size:1.05rem;">To be the most beloved restaurant brand — where every guest feels like family and every meal is a masterpiece crafted with love and purpose.</p>
+                <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+                    <span style="background:var(--primary); color:#fff; padding:2px 12px; border-radius:20px; font-size:0.7rem; font-weight:600;">Family</span>
+                    <span style="background:var(--primary); color:#fff; padding:2px 12px; border-radius:20px; font-size:0.7rem; font-weight:600;">Quality</span>
+                    <span style="background:var(--primary); color:#fff; padding:2px 12px; border-radius:20px; font-size:0.7rem; font-weight:600;">Purpose</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- Master Chefs -->
         <section class="container py-5">
@@ -103,33 +140,33 @@
             <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">The creative minds behind our delicious flavors.</p>
             <div class="grid-3 mt-4">
                 <div class="chef-card" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="images/8.webp" alt="Gordon Ramsay">
+                    <img src="images/OIP (4).webp" alt="Gordon Ramsay">
                     <h3 class="mt-2">Gordon Ramsay</h3>
                     <p class="text-muted">Head Chef</p>
                     <div class="chef-socials mt-2">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                        <a href="404.html"><i class="fab fa-instagram"></i></a>
+                        <a href="404.html"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="chef-card" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="images/9.webp" alt="Alice Waters">
+                    <img src="images/download (5).webp" alt="Alice Waters">
                     <h3 class="mt-2">Alice Waters</h3>
                     <p class="text-muted">Sous Chef</p>
                     <div class="chef-socials mt-2">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                        <a href="404.html"><i class="fab fa-instagram"></i></a>
+                        <a href="404.html"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="chef-card" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="images/10.webp" alt="Massimo Bottura">
+                    <img src="images/download (4).webp" alt="Massimo Bottura">
                     <h3 class="mt-2">Massimo Bottura</h3>
                     <p class="text-muted">Pastry Chef</p>
                     <div class="chef-socials mt-2">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                        <a href="404.html"><i class="fab fa-instagram"></i></a>
+                        <a href="404.html"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -144,17 +181,17 @@
                     <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="testimonial-quote">"The Truffle Pasta here is out of this world! The ambience was cozy and the hospitality was truly 5-star."</p>
-                        <div class="testimonial-author"><img src="images/8.webp" alt="Sarah" class="testimonial-avatar"><div class="testimonial-meta"><h4>Sarah Jenkins</h4><span class="text-muted" style="font-size:0.8rem;">Food Critic</span></div></div>
+                        <div class="testimonial-author"><img src="images/12.webp" alt="Sarah" class="testimonial-avatar"><div class="testimonial-meta"><h4>Sarah Jenkins</h4><span class="text-muted" style="font-size:0.8rem;">Food Critic</span></div></div>
                     </div>
                     <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="testimonial-quote">"Signature Steak was perfectly grilled just as I requested. Excellent wine pairings. Will definitely return!"</p>
-                        <div class="testimonial-author"><img src="images/9.webp" alt="David" class="testimonial-avatar"><div class="testimonial-meta"><h4>David Carter</h4><span class="text-muted" style="font-size:0.8rem;">Regular Guest</span></div></div>
+                        <div class="testimonial-author"><img src="images/13.webp" alt="David" class="testimonial-avatar"><div class="testimonial-meta"><h4>David Carter</h4><span class="text-muted" style="font-size:0.8rem;">Regular Guest</span></div></div>
                     </div>
                     <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                         <p class="testimonial-quote">"Stackly offers a unique experience. The Berry Pavlova is light, fresh and the plating was incredibly gorgeous!"</p>
-                        <div class="testimonial-author"><img src="images/10.webp" alt="Elena" class="testimonial-avatar"><div class="testimonial-meta"><h4>Elena Rostova</h4><span class="text-muted" style="font-size:0.8rem;">Influencer</span></div></div>
+                        <div class="testimonial-author"><img src="images/15.webp" alt="Elena" class="testimonial-avatar"><div class="testimonial-meta"><h4>Elena Rostova</h4><span class="text-muted" style="font-size:0.8rem;">Influencer</span></div></div>
                     </div>
                 </div>
             </div>
@@ -215,7 +252,7 @@
         <div class="container footer-bottom-inner">
             <p>&copy; 2026 Stackly Restaurant. All Rights Reserved.</p>
             <div class="footer-legal">
-                <a href="contact.html">Privacy Policy</a><span>|</span><a href="contact.html">Terms &amp; Conditions</a>
+                <a href="404.html">Privacy Policy</a><span>|</span><a href="404.html">Terms &amp; Conditions</a>
             </div>
         </div>
     </div>
