@@ -54,17 +54,6 @@
         .newsletter-error.show {
             display: block;
         }
-        .newsletter-success {
-            color: #4caf50;
-            font-size: 0.95rem;
-            margin-top: 0.5rem;
-            display: none;
-            width: 100%;
-            text-align: center;
-        }
-        .newsletter-success.show {
-            display: block;
-        }
         .blog-tag {
             display: inline-block;
             background: var(--primary);
@@ -422,9 +411,8 @@
                 <p data-aos="fade-up" data-aos-delay="150">Subscribe to our newsletter and get the latest recipes and events delivered to your inbox.</p>
                 <form class="newsletter-inline" data-aos="zoom-in" data-aos-delay="300" id="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
                     <input type="email" placeholder="Your email address" class="newsletter-inline-input" id="newsletter-email" required>
-                    <button type="submit" class="btn btn-primary">Subscribe <i class="fas fa-paper-plane"></i></button>
+                    <button type="submit" class="btn btn-primary" id="newsletter-submit-btn">Subscribe <i class="fas fa-paper-plane"></i></button>
                     <div class="newsletter-error" id="newsletter-error">Please enter a valid email address</div>
-                    <div class="newsletter-success" id="newsletter-success">✅ Thank you for subscribing! Check your inbox for updates.</div>
                 </form>
             </div>
         </section>
@@ -485,178 +473,210 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="pages.js"></script>
     <script>
-        AOS.init();
+        // Wait for DOM to fully load
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init();
 
-        function handleNewsletterSubmit(e) {
-            e.preventDefault();
-            
-            const emailInput = document.getElementById('newsletter-email');
-            const errorMsg = document.getElementById('newsletter-error');
-            const successMsg = document.getElementById('newsletter-success');
-            
-            // Clear previous messages
-            errorMsg.classList.remove('show');
-            successMsg.classList.remove('show');
-            
-            // Get email value and trim
-            const email = emailInput.value.trim();
-            
-            // Email validation regex
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            
-            // Validate email
-            if (!email) {
-                errorMsg.textContent = 'Please enter your email address';
-                errorMsg.classList.add('show');
-                emailInput.focus();
+            // =============================================
+            // NEWSLETTER SUBSCRIBE - Redirect to 404 (NO POPUP)
+            // =============================================
+            function handleNewsletterSubmit(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Newsletter form submitted'); // Debug log
+                
+                const emailInput = document.getElementById('newsletter-email');
+                const errorMsg = document.getElementById('newsletter-error');
+                
+                if (!emailInput) {
+                    console.log('Email input not found');
+                    return false;
+                }
+                
+                // Clear previous error
+                if (errorMsg) {
+                    errorMsg.classList.remove('show');
+                }
+                
+                // Get email value and trim
+                const email = emailInput.value.trim();
+                console.log('Email entered:', email); // Debug log
+                
+                // Email validation regex
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                
+                // Validate email
+                if (!email) {
+                    if (errorMsg) {
+                        errorMsg.textContent = 'Please enter your email address';
+                        errorMsg.classList.add('show');
+                    }
+                    emailInput.focus();
+                    return false;
+                }
+                
+                if (!emailPattern.test(email)) {
+                    if (errorMsg) {
+                        errorMsg.textContent = 'Please enter a valid email address (e.g., name@domain.com)';
+                        errorMsg.classList.add('show');
+                    }
+                    emailInput.focus();
+                    return false;
+                }
+                
+                // Store email in localStorage
+                localStorage.setItem('stackly_email', email);
+                console.log('Email stored, redirecting to 404...'); // Debug log
+                
+                // ✅ IMMEDIATELY REDIRECT TO 404 - NO POPUP, NO SUCCESS MESSAGE
+                window.location.href = '404.html';
+                
                 return false;
             }
-            
-            if (!emailPattern.test(email)) {
-                errorMsg.textContent = 'Please enter a valid email address (e.g., name@domain.com)';
-                errorMsg.classList.add('show');
-                emailInput.focus();
+
+            // =============================================
+            // BLOG READ MORE - Redirect to 404 (no alert)
+            // =============================================
+            window.redirectToBlog = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Read More clicked, redirecting to 404...'); // Debug log
+                window.location.href = '404.html';
+            };
+
+            // =============================================
+            // BLOG RESERVATION FORM VALIDATION
+            // =============================================
+            window.handleBlogReservationSubmit = function(e) {
+                e.preventDefault();
+                
+                // Collect all values
+                const name = document.getElementById('blog-res-name').value.trim();
+                const phone = document.getElementById('blog-res-phone').value.trim();
+                const date = document.getElementById('blog-res-date').value;
+                const time = document.getElementById('blog-res-time').value;
+                const guests = document.getElementById('blog-res-guests').value;
+                
+                // Get error elements
+                const nameError = document.getElementById('blog-name-error');
+                const phoneError = document.getElementById('blog-phone-error');
+                const dateError = document.getElementById('blog-date-error');
+                const timeError = document.getElementById('blog-time-error');
+                const guestsError = document.getElementById('blog-guests-error');
+                const successMsg = document.getElementById('blog-reservation-msg');
+                
+                // Get input elements for styling
+                const nameInput = document.getElementById('blog-res-name');
+                const phoneInput = document.getElementById('blog-res-phone');
+                const dateInput = document.getElementById('blog-res-date');
+                const timeInput = document.getElementById('blog-res-time');
+                const guestsInput = document.getElementById('blog-res-guests');
+                
+                // Clear previous states
+                [nameInput, phoneInput, dateInput, timeInput, guestsInput].forEach(function(field) {
+                    if (field) {
+                        field.classList.remove('error', 'success');
+                    }
+                });
+                [nameError, phoneError, dateError, timeError, guestsError].forEach(function(err) {
+                    if (err) err.classList.remove('show');
+                });
+                if (successMsg) successMsg.classList.remove('show');
+                
+                var isValid = true;
+                
+                // Validate name - Alphabets only
+                var namePattern = /^[a-zA-Z\s\-']+$/;
+                if (!name || name.length < 2 || !namePattern.test(name)) {
+                    nameInput.classList.add('error');
+                    nameError.classList.add('show');
+                    isValid = false;
+                } else {
+                    nameInput.classList.add('success');
+                }
+                
+                // Validate phone - Numbers only
+                var phoneClean = phone.replace(/[\s\-()]/g, '');
+                if (!phoneClean || !/^[0-9]{10,15}$/.test(phoneClean)) {
+                    phoneInput.classList.add('error');
+                    phoneError.classList.add('show');
+                    isValid = false;
+                } else {
+                    phoneInput.classList.add('success');
+                }
+                
+                // Validate date
+                if (!date) {
+                    dateInput.classList.add('error');
+                    dateError.classList.add('show');
+                    isValid = false;
+                } else {
+                    dateInput.classList.add('success');
+                }
+                
+                // Validate time
+                if (!time) {
+                    timeInput.classList.add('error');
+                    timeError.classList.add('show');
+                    isValid = false;
+                } else {
+                    timeInput.classList.add('success');
+                }
+                
+                // Validate guests
+                if (!guests || guests === '') {
+                    guestsInput.classList.add('error');
+                    guestsError.classList.add('show');
+                    isValid = false;
+                } else {
+                    guestsInput.classList.add('success');
+                }
+                
+                // If all valid, show success
+                if (isValid) {
+                    successMsg.classList.add('show');
+                    // Scroll to success message
+                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Disable submit button and show processing state
+                    const submitBtn = document.getElementById('blog-submit-btn');
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+                    
+                    // Reset after success
+                    setTimeout(function() {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Book Table';
+                        // Optionally reset form
+                        document.getElementById('blog-reservation-form').reset();
+                        [nameInput, phoneInput, dateInput, timeInput, guestsInput].forEach(function(field) {
+                            if (field) field.classList.remove('success');
+                        });
+                    }, 3000);
+                } else {
+                    // Scroll to first error
+                    var firstError = document.querySelector('#blog-reservation-form .form-control.error');
+                    if (firstError) {
+                        firstError.focus();
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
                 return false;
-            }
-            
-            // Store email in localStorage
-            localStorage.setItem('stackly_email', email);
-            
-            // If valid, show success (no redirect to 404)
-            successMsg.textContent = '✅ Thank you for subscribing! Check your inbox for updates.';
-            successMsg.classList.add('show');
-            emailInput.value = '';
-            
-            // Hide success after 5 seconds
-            setTimeout(function() {
-                successMsg.classList.remove('show');
-            }, 5000);
-            
-            return false;
-        }
+            };
 
-        function redirectToBlog(e) {
-            e.preventDefault();
-            alert('This blog post is coming soon! Stay tuned for more delicious content.');
-        }
-
-        // Blog Reservation Form Validation - Same as reservations page
-        function handleBlogReservationSubmit(e) {
-            e.preventDefault();
-            
-            // Collect all values
-            const name = document.getElementById('blog-res-name').value.trim();
-            const phone = document.getElementById('blog-res-phone').value.trim();
-            const date = document.getElementById('blog-res-date').value;
-            const time = document.getElementById('blog-res-time').value;
-            const guests = document.getElementById('blog-res-guests').value;
-            
-            // Get error elements
-            const nameError = document.getElementById('blog-name-error');
-            const phoneError = document.getElementById('blog-phone-error');
-            const dateError = document.getElementById('blog-date-error');
-            const timeError = document.getElementById('blog-time-error');
-            const guestsError = document.getElementById('blog-guests-error');
-            const successMsg = document.getElementById('blog-reservation-msg');
-            
-            // Get input elements for styling
-            const nameInput = document.getElementById('blog-res-name');
-            const phoneInput = document.getElementById('blog-res-phone');
-            const dateInput = document.getElementById('blog-res-date');
-            const timeInput = document.getElementById('blog-res-time');
-            const guestsInput = document.getElementById('blog-res-guests');
-            
-            // Clear previous states
-            [nameInput, phoneInput, dateInput, timeInput, guestsInput].forEach(function(field) {
-                if (field) {
-                    field.classList.remove('error', 'success');
-                }
-            });
-            [nameError, phoneError, dateError, timeError, guestsError].forEach(function(err) {
-                if (err) err.classList.remove('show');
-            });
-            if (successMsg) successMsg.classList.remove('show');
-            
-            var isValid = true;
-            
-            // Validate name - Alphabets only
-            var namePattern = /^[a-zA-Z\s\-']+$/;
-            if (!name || name.length < 2 || !namePattern.test(name)) {
-                nameInput.classList.add('error');
-                nameError.classList.add('show');
-                isValid = false;
-            } else {
-                nameInput.classList.add('success');
-            }
-            
-            // Validate phone - Numbers only
-            var phoneClean = phone.replace(/[\s\-()]/g, '');
-            if (!phoneClean || !/^[0-9]{10,15}$/.test(phoneClean)) {
-                phoneInput.classList.add('error');
-                phoneError.classList.add('show');
-                isValid = false;
-            } else {
-                phoneInput.classList.add('success');
-            }
-            
-            // Validate date
-            if (!date) {
-                dateInput.classList.add('error');
-                dateError.classList.add('show');
-                isValid = false;
-            } else {
-                dateInput.classList.add('success');
-            }
-            
-            // Validate time
-            if (!time) {
-                timeInput.classList.add('error');
-                timeError.classList.add('show');
-                isValid = false;
-            } else {
-                timeInput.classList.add('success');
-            }
-            
-            // Validate guests
-            if (!guests || guests === '') {
-                guestsInput.classList.add('error');
-                guestsError.classList.add('show');
-                isValid = false;
-            } else {
-                guestsInput.classList.add('success');
-            }
-            
-            // If all valid, show success
-            if (isValid) {
-                successMsg.classList.add('show');
-                // Scroll to success message
-                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Manually attach the newsletter submit handler to prevent conflicts
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                // Remove any existing event listeners by cloning
+                const newForm = newsletterForm.cloneNode(true);
+                newsletterForm.parentNode.replaceChild(newForm, newsletterForm);
                 
-                // Disable submit button and show processing state
-                const submitBtn = document.getElementById('blog-submit-btn');
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
-                
-                // Reset after success
-                setTimeout(function() {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Book Table';
-                    // Optionally reset form
-                    document.getElementById('blog-reservation-form').reset();
-                    [nameInput, phoneInput, dateInput, timeInput, guestsInput].forEach(function(field) {
-                        if (field) field.classList.remove('success');
-                    });
-                }, 3000);
-            } else {
-                // Scroll to first error
-                var firstError = document.querySelector('#blog-reservation-form .form-control.error');
-                if (firstError) {
-                    firstError.focus();
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+                // Attach our handler
+                newForm.addEventListener('submit', handleNewsletterSubmit);
+                console.log('Newsletter form handler attached'); // Debug log
             }
-            return false;
-        }
+        });
     </script>
 </body>
 </html>

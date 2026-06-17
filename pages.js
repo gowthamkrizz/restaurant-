@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hidePreloader();
 
+    // =============================================
+    // AOS INITIALIZATION for all pages
+    // =============================================
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 800,
@@ -34,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
             offset: 60,
             easing: 'ease-out-cubic',
             disable: false,
+            mirror: false,
+            startEvent: 'DOMContentLoaded'
         });
     } else {
         const aosElements = document.querySelectorAll('[data-aos]');
@@ -43,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Safety fallback: force visibility after preloader hides if AOS fails to trigger
     setTimeout(() => {
         const aosElements = document.querySelectorAll('[data-aos]');
         aosElements.forEach(el => {
@@ -53,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.style.transition = 'none';
             }
         });
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
     }, 2500);
 
     // =============================================
@@ -394,5 +403,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // =============================================
+    // 10. REFRESH AOS ON PAGE LOAD
+    // =============================================
+    if (typeof AOS !== 'undefined') {
+        setTimeout(() => {
+            AOS.refresh();
+        }, 500);
+    }
 
 });
