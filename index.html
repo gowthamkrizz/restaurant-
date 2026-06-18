@@ -219,6 +219,34 @@
                 opacity: 1;
             }
         }
+        
+        /* Footer Social Icons - Consistent with other pages */
+        .footer-socials {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .footer-socials .social-icon-mini {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.06);
+            text-decoration: none;
+        }
+        .footer-socials .social-icon-mini:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -749,55 +777,63 @@
     <!-- END APP ROOT -->
 
     <!-- ===================== FOOTER ===================== -->
-    <!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-top">
-        <div class="container footer-grid">
-            <div class="footer-col">
-    <div class="footer-logo" style="cursor:pointer;" onclick="window.location.href='index.html'">
-        <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block; margin-bottom:1rem;">
-    </div>
-    <p class="footer-desc">Serving Fresh &amp; Delicious Food Every Day. From our kitchen to your table — crafted with love since 2010.</p>
-    <p class="footer-tagline"><i class="fas fa-star" style="color:var(--primary);"></i> Award-Winning Culinary Excellence</p>
-</div>
-            <div class="footer-col">
-                <h4 class="footer-heading">Quick Links</h4>
-                <nav class="footer-links">
-                    <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
-                    <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
-                    <a href="menu.html"><i class="fas fa-chevron-right"></i> Menu</a>
-                    <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
-                    <a href="reservations.html"><i class="fas fa-chevron-right"></i> Reservations</a>
-                    <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
-                </nav>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-heading">Contact Us</h4>
-                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</span></div>
-                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
-                <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>hello@stackly.com</span></div>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-heading">Opening Hours</h4>
-                <div class="footer-hours">
-                    <div class="hours-row"><span>Mon &ndash; Fri</span><span>9:00 AM &ndash; 10:00 PM</span></div>
-                    <div class="hours-row"><span>Saturday</span><span>10:00 AM &ndash; 11:00 PM</span></div>
-                    <div class="hours-row"><span>Sunday</span><span>10:00 AM &ndash; 9:00 PM</span></div>
-                    <div class="hours-status open"><i class="fas fa-circle"></i> Open Now</div>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo" style="cursor:pointer;" onclick="window.location.href='index.html'">
+                        <img src="images/stackly-logo.webp" alt="Stackly" style="height:40px; width:auto; display:block; margin-bottom:1rem;">
+                    </div>
+                    <p class="footer-desc">Serving Fresh &amp; Delicious Food Every Day. From our kitchen to your table — crafted with love since 2010.</p>
+                    <p class="footer-tagline"><i class="fas fa-star" style="color:var(--primary);"></i> Award-Winning Culinary Excellence</p>
+                    <!-- Social Icons - Consistent with other pages -->
+                    <div class="footer-socials">
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <nav class="footer-links">
+                        <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                        <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+                        <a href="menu.html"><i class="fas fa-chevron-right"></i> Menu</a>
+                        <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+                        <a href="reservations.html"><i class="fas fa-chevron-right"></i> Reservations</a>
+                        <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+                    </nav>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</span></div>
+                    <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+                    <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>hello@stackly.com</span></div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Opening Hours</h4>
+                    <div class="footer-hours">
+                        <div class="hours-row"><span>Mon &ndash; Fri</span><span>9:00 AM &ndash; 10:00 PM</span></div>
+                        <div class="hours-row"><span>Saturday</span><span>10:00 AM &ndash; 11:00 PM</span></div>
+                        <div class="hours-row"><span>Sunday</span><span>10:00 AM &ndash; 9:00 PM</span></div>
+                        <div class="hours-status open"><i class="fas fa-circle"></i> Open Now</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="footer-bottom">
-        <div class="container footer-bottom-inner">
-            <p>&copy; 2026 Stackly Restaurant. All Rights Reserved.</p>
-            <div class="footer-legal">
-                <a href="404.html">Privacy Policy</a><span>|</span><a href="404.html">Terms &amp; Conditions</a>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Stackly Restaurant. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="404.html">Privacy Policy</a><span>|</span><a href="404.html">Terms &amp; Conditions</a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <!-- Back to Top -->
     <button id="back-to-top" class="back-to-top" title="Back to Top"><i class="fas fa-chevron-up"></i></button>

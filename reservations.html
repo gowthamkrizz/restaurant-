@@ -367,6 +367,15 @@
                     </div>
                     <p class="footer-desc">Serving Fresh &amp; Delicious Food Every Day. From our kitchen to your table — crafted with love since 2010.</p>
                     <p class="footer-tagline"><i class="fas fa-star" style="color:var(--primary);"></i> Award-Winning Culinary Excellence</p>
+                    <!-- Social Icons -->
+                    <div class="footer-socials mt-3" style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon-mini" onclick="redirectTo404(event)"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4 class="footer-heading">Quick Links</h4>
@@ -603,6 +612,11 @@
                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             }
+        }
+        
+        function redirectTo404(e) {
+            e.preventDefault();
+            window.location.href = '404.html';
         }
     </script>
 </body>
